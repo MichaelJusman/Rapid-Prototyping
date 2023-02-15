@@ -19,7 +19,6 @@ public class Playtime : GameBehaviour
             
         });
         
-        ScaleToZero(player);
     }
 
     // Update is called once per frame
