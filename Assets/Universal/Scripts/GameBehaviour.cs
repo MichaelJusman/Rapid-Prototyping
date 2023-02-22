@@ -4,6 +4,9 @@ using UnityEngine;
 public class GameBehaviour : MJ.Behaviour
 {
     //Project Specific
+    // protected static *ManagerName* *_MN* { get { return *ManagerName*.Instance; } }
+
+    protected static UIManager _UI { get { return UIManager.Instance; } }
 
 }
 
@@ -12,6 +15,7 @@ public class GameBehaviour : MJ.Behaviour
 //
 public class GameBehaviour<T> : GameBehaviour where T : GameBehaviour
 {
+    public bool dontDestroy;
     static T _instance;
     public static T Instance
     {
@@ -22,7 +26,16 @@ public class GameBehaviour<T> : GameBehaviour where T : GameBehaviour
             return _instance;
         }
     }
-
+    protected virtual void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this as T;
+            if (dontDestroy) DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
     //
     // Instantiate singleton
     // Must be called first thing on Awake()

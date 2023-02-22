@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float powerupStrenght = 15.0f;
 
     public GameObject powerupIndicator;
+    
+    Vector3 oldPosition;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
         float forwardInput = Input.GetAxis("Vertical");
         rb.AddForce(focalPoint.transform.forward * speed * forwardInput);
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+        Debug.Log(rb.velocity.ToString());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,6 +52,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
             enemyRigidBody.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
         }
+    }
+
+    //void FixedUpdate()
+    //{
+    //    speed = Vector3.Distance(oldPosition, transform.position) * 100f;
+    //    oldPosition = transform.position;
+    //    Debug.Log("Speed: " + speed.ToString("F2"));
+    //}
+
+    void ReverseMomentum()
+    {
+        
     }
 
     IEnumerator PowerupCountdownRoutine()
