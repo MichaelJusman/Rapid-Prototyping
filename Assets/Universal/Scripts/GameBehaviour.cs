@@ -7,6 +7,7 @@ public class GameBehaviour : MJ.Behaviour
     // protected static *ManagerName* *_MN* { get { return *ManagerName*.Instance; } }
 
     protected static UIManager _UI { get { return UIManager.Instance; } }
+    protected static SceneController _SC { get { return SceneController.Instance; } }
 
 }
 
