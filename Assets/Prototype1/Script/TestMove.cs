@@ -4,19 +4,37 @@ using UnityEngine;
 
 public class TestMove : MonoBehaviour
 {
-    public Vector2 turn;
+    Camera cam;
+    Collider planeCollider;
+    RaycastHit hit;
+    Ray ray;
     public float speed = 5f;
-    public float sensitivity = .5f;
-    public Rigidbody rb;
+
+    private void Start()
+    {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        planeCollider = GameObject.Find("Island").GetComponent<Collider>();
+    }
 
     private void Update()
     {
-        turn.x += Input.GetAxis("Mouse X") * sensitivity;
-        //turn.y += Input.GetAxis("Mouse Y");
-        transform.localRotation = Quaternion.Euler(0, turn.x, 0);
+        //transform.position = cam.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
+        //if(Input.GetMouseButton(0))
+        // {
+        //     ray = cam.ScreenPointToRay(Input.mousePosition);
+        //     if (Physics.Raycast(ray, out hit))
+        //     {
+        //         transform.position = Vector3.MoveTowards(transform.position, hit.point, Time.deltaTime * speed);
+        //         transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        //     }
+        // }
+        ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, hit.point, Time.deltaTime * speed);
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
+
     }
-    private void FixedUpdate()
-    {
-        rb.velocity = transform.forward * speed;
-    }
+
 }
