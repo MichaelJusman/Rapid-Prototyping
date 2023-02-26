@@ -8,6 +8,7 @@ public class GameBehaviour : MJ.Behaviour
 
     protected static UIManager _UI { get { return UIManager.Instance; } }
     protected static SceneController _SC { get { return SceneController.Instance; } }
+    protected static PlayerMovement _PM { get { return PlayerMovement.Instance; } }
 
 }
 
