@@ -13,7 +13,7 @@ public class TestMove : MonoBehaviour
     private void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        planeCollider = GameObject.Find("Island").GetComponent<Collider>();
+        planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
     }
 
     private void Update()
@@ -31,8 +31,12 @@ public class TestMove : MonoBehaviour
         ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            transform.position = Vector3.MoveTowards(transform.position, hit.point, Time.deltaTime * speed);
-            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            if(hit.collider == planeCollider)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, hit.point, Time.deltaTime * speed);
+                transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            }
+           
         }
 
     }
