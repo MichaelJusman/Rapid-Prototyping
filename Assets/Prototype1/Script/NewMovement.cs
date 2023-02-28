@@ -11,7 +11,15 @@ public class NewMovement : MonoBehaviour
     RaycastHit hit;
     Ray ray;
     public Rigidbody rb;
-    public float speed = 10f;
+    public float speed = 5f;
+
+    public bool hasPowerup;
+    public bool hasSpeedforce;
+
+    private float powerupStrenght = 15.0f;
+
+    public GameObject powerupIndicator;
+    public GameObject SpeedforceIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +36,59 @@ public class NewMovement : MonoBehaviour
         {
             if (hit.collider == planeCollider)
             {
-                //rb.transform.DOLookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z)).SetEase(moveEase);
                 rb.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
-                //transform.position = Vector3.MoveTowards(transform.position, hit.point, Time.deltaTime * speed);
-                //transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
             }
         }
-
         rb.AddForce(transform.forward * speed);
+
+        if (hasSpeedforce == true)
+            speed = 10;
+        else
+            speed = 5;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Powerup"))
+        {
+            hasPowerup = true;
+            Destroy(other.gameObject);
+            StartCoroutine(PowerupCountdownRoutine());
+            powerupIndicator.gameObject.SetActive(true);
+        }
+
+        if (other.CompareTag("Speedforce"))
+        {
+            hasSpeedforce = true;
+            Destroy(other.gameObject);
+            StartCoroutine(SpeedforceCountdownRoutine());
+            SpeedforceIndicator.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        {
+            Rigidbody enemyRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+
+            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
+            enemyRigidBody.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
+        }
+    }
+
+    IEnumerator PowerupCountdownRoutine()
+    {
+        yield return new WaitForSeconds(7);
+        hasPowerup = false;
+        powerupIndicator.gameObject.SetActive(false);
+    }
+
+    IEnumerator SpeedforceCountdownRoutine()
+    {
+        yield return new WaitForSeconds(7);
+        hasSpeedforce = false;
+        SpeedforceIndicator.gameObject.SetActive(false);
     }
 }

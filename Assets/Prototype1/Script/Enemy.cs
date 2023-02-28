@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     private Rigidbody rb;
     private GameObject player;
+    Collider walls;
 
     void Start()
     {
@@ -22,6 +23,15 @@ public class Enemy : MonoBehaviour
         if(transform.position.y < -10)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+
         }
     }
 }

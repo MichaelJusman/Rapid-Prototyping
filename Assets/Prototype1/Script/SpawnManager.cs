@@ -11,12 +11,19 @@ public class SpawnManager : MonoBehaviour
 
     public int waveNumber = 1;
 
+    public GameObject[] buffsPrefab;
     public GameObject powerupPrefab;
+    public GameObject speedforcePrefab;
+
+    public GameObject player;
+    private Vector3 offset;
 
     void Start()
     {   
         SpawnEnemyWave(waveNumber);
-        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+        InstantiateBuffs();
+        offset = transform.position - player.transform.position;
+        //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
 
     void Update()
@@ -27,8 +34,15 @@ public class SpawnManager : MonoBehaviour
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
-            Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+            InstantiateBuffs();
+            //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         }
+
+    }
+    void LateUpdate()
+    {
+        //Set the transform [osition of the camera to that of the player
+        transform.position = player.transform.position + offset;
 
     }
 
@@ -36,7 +50,7 @@ public class SpawnManager : MonoBehaviour
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 0, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 0.5f, spawnPosZ);
         return randomPos;
     }
 
@@ -46,5 +60,10 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
+    }
+
+    void InstantiateBuffs()
+    {
+        Instantiate(buffsPrefab[Random.Range(0, buffsPrefab.Length)], GenerateSpawnPosition(), buffsPrefab[Random.Range(0, buffsPrefab.Length)].transform.rotation);
     }
 }
