@@ -9,6 +9,9 @@ public class GameBehaviour : MJ.Behaviour
     protected static UIManager _UI { get { return UIManager.Instance; } }
     protected static SceneController _SC { get { return SceneController.Instance; } }
     protected static PlayerMovement _PM { get { return PlayerMovement.Instance; } }
+    protected static Timer _TIMER { get { return Timer.Instance; } }
+    protected static GameManager _GM { get { return GameManager.Instance; } }
+
 
 }
 

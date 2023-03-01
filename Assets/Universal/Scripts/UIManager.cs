@@ -9,6 +9,7 @@ public class UIManager : GameBehaviour<UIManager>
 {
 
     public TMP_Text scoreText;
+    public TMP_Text timerText;
     int score = 0;
     int scoreBonus = 50;
     public Ease scoreEase;
@@ -17,11 +18,17 @@ public class UIManager : GameBehaviour<UIManager>
 
     public GameObject losePanel;
 
+
     // Start is called before the first frame update
     void Start()
     {
         scoreText.text = score.ToString();
         losePanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        timerText.text = _TIMER.GetTime().ToString("F3");
     }
 
     //Update is called once per frame
