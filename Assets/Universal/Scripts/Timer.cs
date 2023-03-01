@@ -19,6 +19,12 @@ public class Timer : GameBehaviour<Timer>
 
         //if timerDirection == TimerDirection.CountDown, increment the current time, else decrement the current time
         currentTime = timerDirection == TimerDirection.CountUp ? currentTime += Time.deltaTime : currentTime -= Time.deltaTime;
+
+        if (currentTime < 0)
+        {
+            currentTime = 0;
+            StopTimer();
+        }
     }
 
     /// <summary>
