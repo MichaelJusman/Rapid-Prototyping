@@ -11,6 +11,7 @@ TagManager:
   - Speedforce
   - Damager
   - Heal
+  - Deathplane
   layers:
   - Default
   - TransparentFX

@@ -26,12 +26,15 @@ public class NewMovement : GameBehaviour
     public int bonusHealth = 0;
     public int currentHealth;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
         currentHealth = maxHeatlh + bonusHealth;
+        _UI.SetMaxHealth(currentHealth);
     }
 
     // Update is called once per frame
@@ -51,6 +54,12 @@ public class NewMovement : GameBehaviour
             speed = 10;
         else
             speed = 5;
+
+        if (transform.position.y < -10 || transform.position.y > 30)
+        {
+            Die();
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,8 +102,14 @@ public class NewMovement : GameBehaviour
         if (collision.collider.CompareTag("Damager"))
         {
             TakeDamage();
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
             Debug.Log("Im hit, i have" + currentHealth + " health left");
+            rb.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
+        }
 
+        if (collision.collider.CompareTag("Deathplane"))
+        {
+            Die();
         }
     }
 
@@ -110,6 +125,7 @@ public class NewMovement : GameBehaviour
     public void TakeDamage()
     {
         currentHealth -= 1;
+        _UI.UpdateHealthBar(currentHealth);
         if (currentHealth <= 0)
         {
             Die();

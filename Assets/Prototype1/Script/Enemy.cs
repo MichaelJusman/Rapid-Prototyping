@@ -31,7 +31,11 @@ public class Enemy : MonoBehaviour
         if (collision.collider.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
-
         }
+
+        //if (collision.collider.CompareTag("Player"))
+        //{
+
+        //}
     }
 }
