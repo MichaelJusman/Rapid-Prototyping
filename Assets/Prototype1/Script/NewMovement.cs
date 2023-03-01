@@ -119,6 +119,7 @@ public class NewMovement : GameBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        _UI.ActivateLosePanel();
     }
 
     IEnumerator PowerupCountdownRoutine()

@@ -15,10 +15,13 @@ public class UIManager : GameBehaviour<UIManager>
 
     public Slider healthBarSlider;
 
+    public GameObject losePanel;
+
     // Start is called before the first frame update
     void Start()
     {
         scoreText.text = score.ToString();
+        losePanel.SetActive(false);
     }
 
     //Update is called once per frame
@@ -39,5 +42,10 @@ public class UIManager : GameBehaviour<UIManager>
     public void UpdateHealthBar(int _health)
     {
         healthBarSlider.value = _health;
+    }
+
+    public void ActivateLosePanel()
+    {
+        losePanel.SetActive(true);
     }
 }

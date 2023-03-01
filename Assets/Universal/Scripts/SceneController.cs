@@ -11,6 +11,11 @@ public class SceneController : GameBehaviour<SceneController>
         SceneManager.LoadScene("MainGame");
     }
 
+    public void Level1()
+    {
+        SceneManager.LoadScene("Proto1");
+    }
+
     public void LoadTitle()
     {
         SceneManager.LoadScene("Title");
