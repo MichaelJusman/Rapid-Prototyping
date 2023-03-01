@@ -9,6 +9,8 @@ TagManager:
   - Plane
   - Wall
   - Speedforce
+  - Damager
+  - Heal
   layers:
   - Default
   - TransparentFX

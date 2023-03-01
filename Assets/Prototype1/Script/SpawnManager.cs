@@ -14,6 +14,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] buffsPrefab;
     public GameObject powerupPrefab;
     public GameObject speedforcePrefab;
+    public GameObject healPrefab;
 
     public GameObject player;
     private Vector3 offset;

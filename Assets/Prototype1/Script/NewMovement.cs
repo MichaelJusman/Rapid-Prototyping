@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class NewMovement : MonoBehaviour
+public class NewMovement : GameBehaviour
 {
 
     Camera cam;
@@ -21,11 +21,17 @@ public class NewMovement : MonoBehaviour
     public GameObject powerupIndicator;
     public GameObject SpeedforceIndicator;
 
+    public int maxHeatlh = 10;
+    public int heal = 1;
+    public int bonusHealth = 0;
+    public int currentHealth;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
+        currentHealth = maxHeatlh + bonusHealth;
     }
 
     // Update is called once per frame
@@ -64,7 +70,14 @@ public class NewMovement : MonoBehaviour
             StartCoroutine(SpeedforceCountdownRoutine());
             SpeedforceIndicator.gameObject.SetActive(true);
         }
+
+        if (other.CompareTag("Heal"))
+        {
+            Heal(1);
+            Destroy(other.gameObject);
+        }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -76,6 +89,36 @@ public class NewMovement : MonoBehaviour
             Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
             enemyRigidBody.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
         }
+
+        if (collision.collider.CompareTag("Damager"))
+        {
+            TakeDamage();
+            Debug.Log("Im hit, i have" + currentHealth + " health left");
+
+        }
+    }
+
+    public void Heal(int _heal)
+    {
+        if (currentHealth < maxHeatlh)
+        {
+            currentHealth += _heal;
+            _UI.UpdateHealthBar(currentHealth);
+        }
+    }
+
+    public void TakeDamage()
+    {
+        currentHealth -= 1;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
     IEnumerator PowerupCountdownRoutine()
