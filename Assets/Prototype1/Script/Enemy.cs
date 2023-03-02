@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using DG.Tweening;
 
-public class Enemy : MonoBehaviour
+public class Enemy : GameBehaviour
 {
 
     public float speed;
     private Rigidbody rb;
     private GameObject player;
     Collider walls;
+    public bool tagged = false;
+
 
     void Start()
     {
@@ -31,11 +34,19 @@ public class Enemy : MonoBehaviour
         if (collision.collider.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
+            
+            if (tagged)
+                _GM.AddScore(10);
+            else
+                _GM.AddScore(5);
+
         }
 
-        //if (collision.collider.CompareTag("Player"))
-        //{
+        if (collision.collider.CompareTag("Player"))
+        {
+            tagged = true;
+            GetComponent<Renderer>().material.color = Color.blue;
 
-        //}
+        }
     }
 }

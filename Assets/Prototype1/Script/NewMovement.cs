@@ -60,6 +60,11 @@ public class NewMovement : GameBehaviour
             Die();
         }
 
+        if (_TIMER.TimeExpired())
+        {
+            Die();
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -99,12 +104,31 @@ public class NewMovement : GameBehaviour
             enemyRigidBody.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
         }
 
+        if (collision.gameObject.CompareTag("Deathball") && hasPowerup)
+        {
+            Rigidbody enemyRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+
+            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
+            enemyRigidBody.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
+        }
+
         if (collision.collider.CompareTag("Damager"))
         {
-            TakeDamage();
+            TakeDamage(1);
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
             Debug.Log("Im hit, i have" + currentHealth + " health left");
             rb.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
+
+        }
+
+        if (collision.collider.CompareTag("Deathball"))
+        {
+            TakeDamage(2);
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            Debug.Log("Im hit, i have" + currentHealth + " health left");
+            rb.AddForce(awayFromPlayer * powerupStrenght, ForceMode.Impulse);
+
         }
 
         if (collision.collider.CompareTag("Deathplane"))
@@ -122,9 +146,10 @@ public class NewMovement : GameBehaviour
         }
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int _damage)
     {
-        currentHealth -= 1;
+        currentHealth -= _damage;
+        _GM.ShakeCamera();
         _UI.UpdateHealthBar(currentHealth);
         if (currentHealth <= 0)
         {

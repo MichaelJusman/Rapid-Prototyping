@@ -1,9 +1,16 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : GameBehaviour<GameManager>
 {
+    public int score;
+    public int scoreMultiplier = 1;
+
+    public float tweenTime = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +37,16 @@ public class GameManager : GameBehaviour<GameManager>
         {
             Debug.Log("Time Expired");
         }
+    }
+
+    public void AddScore(int _score)
+    {
+        score += _score * scoreMultiplier;
+        _UI.UpdateScore(score);
+    }
+
+    public void ShakeCamera()
+    {
+        Camera.main.DOShakePosition(tweenTime / 2, 1.2f);
     }
 }

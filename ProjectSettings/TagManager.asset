@@ -12,6 +12,8 @@ TagManager:
   - Damager
   - Heal
   - Deathplane
+  - Star
+  - Deathball
   layers:
   - Default
   - TransparentFX

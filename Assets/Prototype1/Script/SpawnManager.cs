@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : GameBehaviour
 {
     public GameObject enemyPrefab;
-    private float spawnRange = 20;
+    private float spawnRange = 9;
 
     public int enemyCount;
 
@@ -15,6 +15,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject powerupPrefab;
     public GameObject speedforcePrefab;
     public GameObject healPrefab;
+    public GameObject deathBall;
 
     public GameObject player;
     private Vector3 offset;
@@ -27,15 +28,19 @@ public class SpawnManager : MonoBehaviour
         //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
 
+
+
     void Update()
     {
         enemyCount = FindObjectsOfType<Enemy>().Length;
+        _UI.UpdateEnemyCounter(enemyCount);
 
         if (enemyCount == 0)
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
             InstantiateBuffs();
+            Instantiate(deathBall, GenerateSpawnPositionDeathBall(), deathBall.transform.rotation);
             //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         }
 
@@ -53,6 +58,14 @@ public class SpawnManager : MonoBehaviour
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
         Vector3 randomPos = new Vector3(spawnPosX, 0.5f, spawnPosZ);
         return randomPos;
+    }
+
+    private Vector3 GenerateSpawnPositionDeathBall()
+    {
+        float spawnPosX = Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        Vector3 randomPosDeathBall = new Vector3(spawnPosX, 1.5f, spawnPosZ);
+        return randomPosDeathBall;
     }
 
     void SpawnEnemyWave(int enemiesToSpawn)

@@ -6,11 +6,16 @@ public enum TimerDirection { CountUp, CountDown }
 public class Timer : GameBehaviour<Timer>
 {
     public TimerDirection timerDirection;
-    public float startTime = 0;
+    public float startTime = 20f;
     float currentTime;
     bool isTiming = false;
     bool hasTimeLimit = false;
     float timeLimit = 0f;
+
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
@@ -20,11 +25,18 @@ public class Timer : GameBehaviour<Timer>
         //if timerDirection == TimerDirection.CountDown, increment the current time, else decrement the current time
         currentTime = timerDirection == TimerDirection.CountUp ? currentTime += Time.deltaTime : currentTime -= Time.deltaTime;
 
-        if (currentTime < 0)
+        //if (currentTime < 0 && !hasTimeLimit)
+        //{
+        //    currentTime = 0;
+        //    StopTimer();
+        //}
+
+        if (hasTimeLimit && currentTime == timeLimit)
         {
-            currentTime = 0;
             StopTimer();
         }
+
+
     }
 
     /// <summary>
@@ -106,7 +118,7 @@ public class Timer : GameBehaviour<Timer>
         if (!hasTimeLimit)
             return false;
 
-        return timerDirection == TimerDirection.CountDown ? currentTime > timeLimit : currentTime < timeLimit;
+        return timerDirection == TimerDirection.CountDown ? currentTime < timeLimit : currentTime > timeLimit;
     }
 
     /// <summary>

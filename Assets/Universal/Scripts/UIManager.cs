@@ -10,6 +10,7 @@ public class UIManager : GameBehaviour<UIManager>
 
     public TMP_Text scoreText;
     public TMP_Text timerText;
+    public TMP_Text enemyCounterText;
     int score = 0;
     int scoreBonus = 50;
     public Ease scoreEase;
@@ -31,12 +32,22 @@ public class UIManager : GameBehaviour<UIManager>
         timerText.text = _TIMER.GetTime().ToString("F3");
     }
 
+    public void UpdateScore(int _score)
+    {
+        scoreText.text = "Score: " + _score;
+    }
+
+    public void UpdateEnemyCounter(int _enemy)
+    {
+        enemyCounterText.text = _enemy + " Targets Left";
+    }
+
     //Update is called once per frame
-    public void TweenScore()
+    public void TweenScore(int _score)
     {
         DOTween.To(() => score, x => score = x, score + scoreBonus, 1).SetEase(scoreEase).OnUpdate(() =>
         {
-            scoreText.text = "Score: " + score.ToString();
+            scoreText.text = "Score: " + _score.ToString();
         });
     }
 
