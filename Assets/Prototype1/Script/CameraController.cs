@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : GameBehaviour
 {
     public GameObject player;
     private Vector3 offset;
@@ -14,10 +14,12 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void LateUpdate()
+    void Update()
     {
         //Set the transform [osition of the camera to that of the player
         transform.position = player.transform.position + offset;
 
     }
+
+
 }

@@ -26,7 +26,9 @@ public class NewMovement : GameBehaviour
     public int bonusHealth = 0;
     public int currentHealth;
 
-    
+    public float tweenTime = 2f;
+
+
 
     // Start is called before the first frame update
     void Start()
