@@ -9,7 +9,7 @@ public class GameManager : GameBehaviour<GameManager>
     public int score;
     public int scoreMultiplier = 1;
 
-    public float tweenTime = 2f;
+    public float tweenTime = 0.2f;
 
     // Start is called before the first frame update
     void Start()

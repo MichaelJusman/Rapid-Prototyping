@@ -11,13 +11,22 @@ public class UIManager : GameBehaviour<UIManager>
     public TMP_Text scoreText;
     public TMP_Text timerText;
     public TMP_Text enemyCounterText;
+    public TMP_Text lastingText;
+    public TMP_Text endscoreText;
+    public TMP_Text speedText;
+    public TMP_Text Info1;
+    public TMP_Text Info2;
+    public TMP_Text Info3;
+    public TMP_Text Info4;
     int score = 0;
     int scoreBonus = 50;
     public Ease scoreEase;
+    float lasted;
 
     public Slider healthBarSlider;
 
     public GameObject losePanel;
+    public GameObject IngameUI;
 
 
     // Start is called before the first frame update
@@ -25,6 +34,8 @@ public class UIManager : GameBehaviour<UIManager>
     {
         scoreText.text = score.ToString();
         losePanel.SetActive(false);
+        IngameUI.SetActive(true);
+        //StartCoroutine(DisableInfo());
     }
 
     private void Update()
@@ -37,10 +48,27 @@ public class UIManager : GameBehaviour<UIManager>
         scoreText.text = "Score: " + _score;
     }
 
+    public void UpdateEndScore(int _score)
+    {
+        
+        endscoreText.text = "Score :" + _score;
+    }
+
+    public void UpdateLasting()
+    {
+        lasted = _TIMER.GetTime();
+        lastingText.text = "Lasted :" + lasted.ToString("F3");
+    }
+
     public void UpdateEnemyCounter(int _enemy)
     {
         enemyCounterText.text = _enemy + " Targets Left";
     }
+
+    //public void UpdateSpeed(float _speed)
+    //{
+    //    speedText.text = "Speed :" + _speed.ToString("F3");
+    //}
 
     //Update is called once per frame
     public void TweenScore(int _score)
@@ -66,4 +94,25 @@ public class UIManager : GameBehaviour<UIManager>
     {
         losePanel.SetActive(true);
     }
+
+    public void DeactivateIngameUI()
+    {
+        IngameUI.SetActive(false);
+    }
+
+    public void OnGameLoss()
+    {
+        ActivateLosePanel();
+        UpdateEndScore(_GM.score);
+        UpdateLasting();
+        DeactivateIngameUI();
+    }
+
+    //IEnumerator DisableInfo()
+    //{
+    //    yield return new WaitForSeconds(7);
+    //    Info1.enabled = false;
+    //    Info2.enabled = false;
+    //    Info3.enabled = false;
+    //}
 }

@@ -27,6 +27,10 @@ public class NewMovement : GameBehaviour
     public int currentHealth;
 
     public float tweenTime = 2f;
+    public float velocity;
+    public string speedV;
+
+    public GameObject tutorialText;
 
 
 
@@ -37,6 +41,8 @@ public class NewMovement : GameBehaviour
         planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
         currentHealth = maxHeatlh + bonusHealth;
         _UI.SetMaxHealth(currentHealth);
+        tutorialText.gameObject.SetActive(true);
+        StartCoroutine(TutorialInfo());
     }
 
     // Update is called once per frame
@@ -67,7 +73,23 @@ public class NewMovement : GameBehaviour
             Die();
         }
 
+        //GetVelocity();
+
+
     }
+
+    IEnumerator TutorialInfo()
+    {
+        yield return new WaitForSeconds(5);
+        tutorialText.gameObject.SetActive(false);
+
+    }
+
+    //public void GetVelocity()
+    //{
+    //    velocity = rb.velocity.z;
+    //    _UI.UpdateSpeed(velocity);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -162,7 +184,8 @@ public class NewMovement : GameBehaviour
     public void Die()
     {
         Destroy(gameObject);
-        _UI.ActivateLosePanel();
+        _TIMER.StopTimer();
+        _UI.OnGameLoss();
     }
 
     IEnumerator PowerupCountdownRoutine()
