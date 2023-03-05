@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 229294528231293448}
   - component: {fileID: 8521750854804485408}
   - component: {fileID: -60603897384818983}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DeathBall
   m_TagString: Deathball
   m_Icon: {fileID: 0}
@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  collider1: {fileID: 229294528231293448}
+  collider2: {fileID: 4736573146914421805, guid: 02fc702e8046a7f4b86206fbe68b1568, type: 3}
 --- !u!54 &-60603897384818983
 Rigidbody:
   m_ObjectHideFlags: 0

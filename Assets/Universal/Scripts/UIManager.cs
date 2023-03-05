@@ -18,6 +18,7 @@ public class UIManager : GameBehaviour<UIManager>
     public TMP_Text Info2;
     public TMP_Text Info3;
     public TMP_Text Info4;
+    public TMP_Text Info5;
     int score = 0;
     int scoreBonus = 50;
     public Ease scoreEase;
@@ -35,7 +36,9 @@ public class UIManager : GameBehaviour<UIManager>
         scoreText.text = score.ToString();
         losePanel.SetActive(false);
         IngameUI.SetActive(true);
-        //StartCoroutine(DisableInfo());
+        StartCoroutine(DisableInfo());
+        Info4.enabled = false;
+        Info5.enabled = false;
     }
 
     private void Update()
@@ -50,7 +53,7 @@ public class UIManager : GameBehaviour<UIManager>
 
     public void UpdateEndScore(int _score)
     {
-        
+
         endscoreText.text = "Score :" + _score;
     }
 
@@ -108,11 +111,16 @@ public class UIManager : GameBehaviour<UIManager>
         DeactivateIngameUI();
     }
 
-    //IEnumerator DisableInfo()
-    //{
-    //    yield return new WaitForSeconds(7);
-    //    Info1.enabled = false;
-    //    Info2.enabled = false;
-    //    Info3.enabled = false;
-    //}
+    IEnumerator DisableInfo()
+    {
+        yield return new WaitForSeconds(7);
+        Info1.enabled = false;
+        Info2.enabled = false;
+        Info3.enabled = false;
+        Info4.enabled = true;
+        Info5.enabled = true;
+        yield return new WaitForSeconds(7);
+        Info4.enabled = false;
+        Info5.enabled = false;
+    }
 }

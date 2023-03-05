@@ -43,7 +43,6 @@ public class SpawnManager : GameBehaviour
             Instantiate(deathBall, GenerateSpawnPositionDeathBall(), deathBall.transform.rotation);
             //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         }
-
     }
     void LateUpdate()
     {

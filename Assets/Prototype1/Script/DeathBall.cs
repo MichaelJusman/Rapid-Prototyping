@@ -7,6 +7,8 @@ public class DeathBall : GameBehaviour
     public float speed;
     private Rigidbody rb;
     private GameObject player;
+    public Collider collider1;
+    public Collider collider2;
 
 
 
@@ -14,6 +16,7 @@ public class DeathBall : GameBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
+        Physics.IgnoreLayerCollision(7, 6);
     }
 
     void Update()
