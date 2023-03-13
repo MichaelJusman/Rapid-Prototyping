@@ -200,6 +200,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 0
+  score: 0
+  scoreMultiplier: 1
+  tweenTime: 0.2
+  pausePanel: {fileID: 0}
 --- !u!4 &198123114
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +522,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4413727fe7759a49a3e3a2b3aa28ba0, type: 2}
+  - {fileID: 2100000, guid: 08cde2333c9d402489bc7aaed1823b1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -874,9 +878,19 @@ MonoBehaviour:
   dontDestroy: 0
   scoreText: {fileID: 749326672}
   timerText: {fileID: 1814832310}
+  enemyCounterText: {fileID: 0}
+  lastingText: {fileID: 0}
+  endscoreText: {fileID: 0}
+  speedText: {fileID: 0}
+  Info1: {fileID: 0}
+  Info2: {fileID: 0}
+  Info3: {fileID: 0}
+  Info4: {fileID: 0}
+  Info5: {fileID: 0}
   scoreEase: 0
   healthBarSlider: {fileID: 0}
   losePanel: {fileID: 0}
+  IngameUI: {fileID: 0}
 --- !u!1 &1569123269
 GameObject:
   m_ObjectHideFlags: 0
