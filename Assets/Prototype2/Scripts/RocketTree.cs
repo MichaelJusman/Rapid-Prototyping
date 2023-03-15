@@ -44,7 +44,8 @@ public class RocketTree : MonoBehaviour
 
     public void LaunchTree(float _speed)
     {
-        rb.AddForce(transform.forward * _speed);
+        //rb.AddForce.ForceMode.Impulse;
+        rb.AddForce(transform.forward * _speed, ForceMode.VelocityChange);
         isDocked = false;
     }
 }

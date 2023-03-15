@@ -28,7 +28,7 @@ public class PhysicSphereCheck : GameBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position,sphereRadius);
+        Gizmos.DrawWireSphere(transform.position,sphereRadius);
     }
 
     public void GravitationalRing()
