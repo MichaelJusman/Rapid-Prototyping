@@ -164,7 +164,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 78001279}
   planetCenter: {fileID: 51253502}
-  pullSpeed: 70
+  pullSpeed: 50
 --- !u!135 &51253504
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51253502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49, y: 0.5, z: 10}
+  m_LocalPosition: {x: 75.1, y: 0.5, z: 10}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -606,7 +606,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 78001279}
   planetCenter: {fileID: 880239696}
-  pullSpeed: 70
+  pullSpeed: 50
 --- !u!135 &880239698
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -678,7 +678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880239696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.875, y: 0.5, z: 21.65625}
+  m_LocalPosition: {x: 14.5, y: 0.5, z: 21.65625}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -726,7 +726,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 78001279}
   planetCenter: {fileID: 1113445280}
-  pullSpeed: 70
+  pullSpeed: 50
 --- !u!135 &1113445282
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -798,7 +798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113445280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32, y: 0.5, z: 0}
+  m_LocalPosition: {x: 45.7, y: 0.5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -846,7 +846,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 78001279}
   planetCenter: {fileID: 1295141389}
-  pullSpeed: 70
+  pullSpeed: 50
 --- !u!135 &1295141391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -918,7 +918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295141389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49, y: 0.5, z: -13}
+  m_LocalPosition: {x: 66.8, y: 0.5, z: -13}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -979,7 +979,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.9
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1064,7 +1064,7 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 78001279}
   planetCenter: {fileID: 1638971187}
-  pullSpeed: 70
+  pullSpeed: 50
 --- !u!135 &1638971189
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638971187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.65625, y: 0.5, z: -8.0625}
+  m_LocalPosition: {x: 25.88125, y: 0.5, z: -8.0625}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
