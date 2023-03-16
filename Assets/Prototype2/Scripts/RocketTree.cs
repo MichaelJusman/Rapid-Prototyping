@@ -11,8 +11,9 @@ public class RocketTree : MonoBehaviour
     Ray ray;
     public Rigidbody rb;
     public float speed = 100;
+    public float boostDuration = 1;
 
-    bool isDocked = true;
+    public bool isDocked = true;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,12 @@ public class RocketTree : MonoBehaviour
     {
         //rb.AddForce.ForceMode.Impulse;
         rb.AddForce(transform.forward * _speed, ForceMode.VelocityChange);
+        StartCoroutine(BoostDuration(boostDuration));
+    }
+
+    IEnumerator BoostDuration(float _time)
+    {
+        yield return new WaitForSeconds(_time);
         isDocked = false;
     }
 }
