@@ -13,6 +13,11 @@ public class GameBehaviour : MJ.Behaviour
     protected static GameManager _GM { get { return GameManager.Instance; } }
     protected static GameStateManager _GMS { get { return GameStateManager.Instance; } }
 
+    //Prototype2
+    protected static GameManager2 _GM2 { get { return GameManager2.Instance; } }
+    protected static UIManager2 _UI2 { get { return UIManager2.Instance; } } 
+
+
     public enum GameState { Title, Instruction, Playing, Pause, GameOver }
 
 
