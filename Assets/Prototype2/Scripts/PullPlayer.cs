@@ -14,7 +14,7 @@ public class PullPlayer : GameBehaviour
 
     public void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()

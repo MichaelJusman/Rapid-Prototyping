@@ -12,6 +12,11 @@ public class PullSeed : GameBehaviour
     public LayerMask treeSeedLayer;
     public bool isFertilized = false;
 
+    public void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     //private void Update()
     //{
     //    if (Physics.CheckSphere(transform.position, sphereRadius, treeSeedLayer))
