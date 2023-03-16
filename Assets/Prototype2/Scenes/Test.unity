@@ -375,6 +375,7 @@ MonoBehaviour:
   speed: 0.01
   boostDuration: 1
   isDocked: 1
+  seedTree: {fileID: 0}
 --- !u!1 &304775884
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +900,7 @@ GameObject:
   - component: {fileID: 1099367940}
   - component: {fileID: 1099367939}
   - component: {fileID: 1099367938}
+  - component: {fileID: 1099367942}
   m_Layer: 2
   m_Name: Mars
   m_TagString: Untagged
@@ -986,6 +988,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1099367942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099367937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9d6d8d24e3b584c94f5b10f303724b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1113445280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,9 +1709,10 @@ GameObject:
   - component: {fileID: 1796649736}
   - component: {fileID: 1796649735}
   - component: {fileID: 1796649738}
+  - component: {fileID: 1796649739}
   m_Layer: 2
   m_Name: Atmostphere
-  m_TagString: Untagged
+  m_TagString: Atmostphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1802,6 +1817,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerTag: []
+--- !u!114 &1796649739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796649733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372aa7e971bf5ac40b58941ada18cb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetCenter: {fileID: 1099367937}
+  seedTree: {fileID: 8923573416846665630, guid: fc8948168533c8647be40541326fa52e, type: 3}
+  player: {fileID: 294016273562750670}
+  pullSpeed: 100
+  sphereRadius: 5
+  treeSeedLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isFertilized: 0
 --- !u!1 &1974398112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,8 +1930,8 @@ Transform:
   m_GameObject: {fileID: 1974398112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 100, y: 2, z: 100}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1912,6 +1948,7 @@ GameObject:
   - component: {fileID: 4356311853601015318}
   - component: {fileID: 4356311853601015319}
   - component: {fileID: 4356311853601015317}
+  - component: {fileID: 4356311853601015320}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1952,6 +1989,7 @@ MonoBehaviour:
   speed: 0.01
   boostDuration: 1
   isDocked: 1
+  seedTree: {fileID: 8923573416846665630, guid: fc8948168533c8647be40541326fa52e, type: 3}
 --- !u!54 &4356311853601015318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1982,6 +2020,28 @@ CapsuleCollider:
   m_Height: 3.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 1.5}
+--- !u!114 &4356311853601015320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294016273562750670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8cb75cc5fa4f147a5a2b80da5257aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerTag: []
 --- !u!4 &4790895467762470105
 Transform:
   m_ObjectHideFlags: 0

@@ -25,11 +25,11 @@ public class PullPlayer : GameBehaviour
         //    GravitationalRing();
         //}
 
-        if (Collider.Equals(transform.position, player.transform.position))
-        {
-            Debug.Log("Im being pulled");
-            GravitationalRing();
-        }
+        //if (Collider.Equals(transform.position, player.transform.position))
+        //{
+        //    Debug.Log("Im being pulled");
+        //    GravitationalRing();
+        //}
     }
 
     //private void OnDrawGizmos()

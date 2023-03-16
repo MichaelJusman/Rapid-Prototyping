@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketTree : MonoBehaviour
+public class RocketTree : GameBehaviour
 {
 
     Camera cam;
@@ -15,11 +15,15 @@ public class RocketTree : MonoBehaviour
 
     public bool isDocked = true;
 
+    public GameObject seedTree;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
+
+        Physics.IgnoreLayerCollision(3, 8);
     }
 
     // Update is called once per frame
@@ -39,8 +43,10 @@ public class RocketTree : MonoBehaviour
             LaunchTree(100);
         }
 
-
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SpawnSeed();
+        }
     }
 
     public void LaunchTree(float _speed)
@@ -55,4 +61,26 @@ public class RocketTree : MonoBehaviour
         yield return new WaitForSeconds(_time);
         isDocked = false;
     }
+
+    public void SpawnSeed()
+    {
+        Instantiate(seedTree, transform.position, transform.rotation);
+    }
+
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.collider.CompareTag("Atmostphere"))
+    //    {
+    //        SpawnSeed();
+    //    }
+    //}
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Atmostphere"))
+    //    {
+    //        SpawnSeed();
+    //    }
+    //}
+
 }
