@@ -54,7 +54,7 @@ public class PullSeed : GameBehaviour
     public void OnTriggerStay(Collider other)
     {
         
-        if (other.CompareTag("Seed") && !isFertilized)
+        if (other.CompareTag("Seed"))
         {
             Vector3 direction = planetCenter.transform.position - other.transform.position;
             other.GetComponent<Rigidbody>().AddForce(pullSpeed * direction);

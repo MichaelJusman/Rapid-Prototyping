@@ -6,18 +6,44 @@ public class CameraController2 : GameBehaviour
 {
     public GameObject player;
     private Vector3 offset;
+    public bool  isDocked;
+    public float speed = 1;
+
+    
 
     void Start()
     {
-        //Set the offset to the cameras position minus the player
+        
+
         offset = transform.position - player.transform.position;
+        isDocked = true;
     }
 
 
     void Update()
     {
-        //Set the transform [osition of the camera to that of the player
-        transform.position = player.transform.position + offset;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            isDocked = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = player.transform.position + offset;
+        }
+
+        if (isDocked)
+        {
+            float xAxisValue = Input.GetAxis("Horizontal") * speed;
+            float zAxisValue = Input.GetAxis("Vertical") * speed;
+
+            transform.position = new Vector3(transform.position.x + xAxisValue, transform.position.y, transform.position.z + zAxisValue);
+        }
+
+        if (!isDocked)
+        {
+            transform.position = player.transform.position + offset;
+        }
 
     }
 }

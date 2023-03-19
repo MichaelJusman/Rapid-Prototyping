@@ -10,6 +10,9 @@ public class UIManager2 : GameBehaviour<UIManager2>
     public TMP_Text speedText;
     public float speedValue;
 
+    public TMP_Text scoreText;
+
+
     void Start()
     {
         
@@ -21,6 +24,11 @@ public class UIManager2 : GameBehaviour<UIManager2>
         speedSlider.onValueChanged.AddListener((v) =>
         { speedValue = v; });
 
+    }
+
+    public void UpdateScore(int _score)
+    {
+        scoreText.text = "Score: " + _score;
     }
 
     public void OnGameEnd()

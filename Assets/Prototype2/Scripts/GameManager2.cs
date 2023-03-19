@@ -12,7 +12,8 @@ public class GameManager2 : GameBehaviour<GameManager2>
     public void AddScore(int _score)
     {
         score += _score * scoreMultiplier;
-        
+        _UI2.UpdateScore(score);
+
     }
 
     

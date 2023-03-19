@@ -6,6 +6,8 @@ public class RocketTree : GameBehaviour<RocketTree>
 {
 
     Camera cam;
+    public float cameraSpeed = 2;
+
     Collider planeCollider;
     RaycastHit hit;
     Ray ray;
@@ -46,6 +48,7 @@ public class RocketTree : GameBehaviour<RocketTree>
         {
             isDocked = false;
             isBoosted = true;
+            //ZoomOut();
         }
         
         if(!isDocked && isBoosted)
@@ -54,11 +57,6 @@ public class RocketTree : GameBehaviour<RocketTree>
             rb.AddForce(transform.forward * speed);
             StartCoroutine(BoostDuration(boostDuration));
 
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SpawnSeed();
         }
 
         if (isBoosted)
@@ -83,8 +81,19 @@ public class RocketTree : GameBehaviour<RocketTree>
 
     public void Die()
     {
+        StartCoroutine(ProlongDeathSequence(3));
+    }
+
+    IEnumerator ProlongDeathSequence(float _time)
+    {
+        yield return new WaitForSeconds(_time);
         Destroy(gameObject);
         _UI2.OnGameEnd();
     }
+
+    //public void ZoomOut()
+    //{
+    //    cam.orthographicSize = 30 * Time.deltaTime;
+    //}
 
 }

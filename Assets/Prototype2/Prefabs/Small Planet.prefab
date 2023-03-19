@@ -328,11 +328,11 @@ MonoBehaviour:
   planetCenter: {fileID: 727094375984642562}
   seedTree: {fileID: 8923573416846665630, guid: fc8948168533c8647be40541326fa52e, type: 3}
   player: {fileID: 0}
-  pullSpeed: 100
+  pullSpeed: 10000
   sphereRadius: 5
   treeSeedLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isFertilized: 0
   isTagged: 0
 --- !u!1001 &1732021785472065192
