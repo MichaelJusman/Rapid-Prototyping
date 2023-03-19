@@ -14,4 +14,6 @@ public class GameManager2 : GameBehaviour<GameManager2>
         score += _score * scoreMultiplier;
         
     }
+
+    
 }

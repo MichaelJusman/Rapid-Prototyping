@@ -22,4 +22,9 @@ public class UIManager2 : GameBehaviour<UIManager2>
         { speedValue = v; });
 
     }
+
+    public void OnGameEnd()
+    {
+
+    }
 }

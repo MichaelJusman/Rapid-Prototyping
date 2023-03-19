@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketTree : GameBehaviour
+public class RocketTree : GameBehaviour<RocketTree>
 {
 
     Camera cam;
@@ -17,20 +17,21 @@ public class RocketTree : GameBehaviour
     public bool isBoosted  = false;
 
     public GameObject seedTree;
+    public GameObject rocketFire;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
-
+        rocketFire.SetActive(false);
         Physics.IgnoreLayerCollision(3, 8);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+          
 
         ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit) && isDocked)
@@ -52,20 +53,22 @@ public class RocketTree : GameBehaviour
             speed = _UI2.speedValue;
             rb.AddForce(transform.forward * speed);
             StartCoroutine(BoostDuration(boostDuration));
+
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             SpawnSeed();
         }
-    }
 
-    //public void LaunchTree(float _speed)
-    //{
-    //    //rb.AddForce.ForceMode.Impulse;
-    //    rb.AddForce(transform.forward * _speed, ForceMode.VelocityChange);
-    //    StartCoroutine(BoostDuration(boostDuration));
-    //}
+        if (isBoosted)
+            rocketFire.SetActive(true);
+        else
+            rocketFire.SetActive(false);
+
+        if (rb.velocity.z == 0 && !isDocked && !isBoosted)
+            Die();
+    }
 
     IEnumerator BoostDuration(float _time)
     {
@@ -78,20 +81,10 @@ public class RocketTree : GameBehaviour
         Instantiate(seedTree, transform.position, transform.rotation);
     }
 
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.collider.CompareTag("Atmostphere"))
-    //    {
-    //        SpawnSeed();
-    //    }
-    //}
-
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Atmostphere"))
-    //    {
-    //        SpawnSeed();
-    //    }
-    //}
+    public void Die()
+    {
+        Destroy(gameObject);
+        _UI2.OnGameEnd();
+    }
 
 }

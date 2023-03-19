@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class Terraformer : GameBehaviour
 {
+    public GameObject mainPlanet;
+    public GameObject terraformedPlanet;
+
+    public void Start()
+    {
+        mainPlanet.SetActive(true);
+        terraformedPlanet.SetActive(false);
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Seed"))
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            terraformedPlanet.SetActive(true);
+            mainPlanet.SetActive(false);
             Destroy(collision.gameObject);
+            _GM2.AddScore(1);
+        }
 
-
-            //roto2.GameManager.AddScoore(1);P
+        if (collision.collider.CompareTag("Player"))
+        {
+            _RT.Die();
         }
     }
 }
