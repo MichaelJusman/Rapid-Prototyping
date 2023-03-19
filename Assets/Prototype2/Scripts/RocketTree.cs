@@ -10,10 +10,11 @@ public class RocketTree : GameBehaviour
     RaycastHit hit;
     Ray ray;
     public Rigidbody rb;
-    public float speed = 100;
+    public float speed;
     public float boostDuration = 1;
 
     public bool isDocked = true;
+    public bool isBoosted  = false;
 
     public GameObject seedTree;
 
@@ -29,6 +30,8 @@ public class RocketTree : GameBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit) && isDocked)
         {
@@ -40,7 +43,15 @@ public class RocketTree : GameBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isDocked)
         {
-            LaunchTree(100);
+            isDocked = false;
+            isBoosted = true;
+        }
+        
+        if(!isDocked && isBoosted)
+        {
+            speed = _UI2.speedValue;
+            rb.AddForce(transform.forward * speed);
+            StartCoroutine(BoostDuration(boostDuration));
         }
 
         if (Input.GetKeyDown(KeyCode.P))
@@ -49,17 +60,17 @@ public class RocketTree : GameBehaviour
         }
     }
 
-    public void LaunchTree(float _speed)
-    {
-        //rb.AddForce.ForceMode.Impulse;
-        rb.AddForce(transform.forward * _speed, ForceMode.VelocityChange);
-        StartCoroutine(BoostDuration(boostDuration));
-    }
+    //public void LaunchTree(float _speed)
+    //{
+    //    //rb.AddForce.ForceMode.Impulse;
+    //    rb.AddForce(transform.forward * _speed, ForceMode.VelocityChange);
+    //    StartCoroutine(BoostDuration(boostDuration));
+    //}
 
     IEnumerator BoostDuration(float _time)
     {
         yield return new WaitForSeconds(_time);
-        isDocked = false;
+        isBoosted = false;
     }
 
     public void SpawnSeed()

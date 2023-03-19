@@ -8,13 +8,16 @@ public class PullPlayer : GameBehaviour
     public LayerMask playerLayer;
     public LayerMask treeSeedLayer;
     public GameObject player;
+    public GameObject seed;
 
     public GameObject planetCenter;
     public float pullSpeed = 100;
+    public float seedPullSpeed = 100;
 
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        seed = GameObject.FindGameObjectWithTag("Seed");
     }
 
     private void Update()
@@ -40,7 +43,9 @@ public class PullPlayer : GameBehaviour
     public void GravitationalRing()
     {
         //player.transform.Translate(Time.deltaTime * pullSpeed * planetCenter.transform.position); 
-        Vector3 direction = planetCenter.transform.position - player.transform.position;
-        player.GetComponent<Rigidbody>().AddForce(pullSpeed * direction);
+        Vector3 playerDirection = planetCenter.transform.position - player.transform.position;
+        Vector3 seedDirection = planetCenter.transform.position - player.transform.position;
+        player.GetComponent<Rigidbody>().AddForce(pullSpeed * playerDirection);
+        seed.GetComponent<Rigidbody>().AddForce(seedPullSpeed * seedDirection);
     }
 }

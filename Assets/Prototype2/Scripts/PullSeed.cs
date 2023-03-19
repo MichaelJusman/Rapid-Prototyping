@@ -11,6 +11,7 @@ public class PullSeed : GameBehaviour
     public float sphereRadius = 5;
     public LayerMask treeSeedLayer;
     public bool isFertilized = false;
+    public bool isTagged = false;
 
     public void Start()
     {
@@ -43,9 +44,10 @@ public class PullSeed : GameBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isFertilized)
+        if (other.CompareTag("Player") && !isFertilized && !isTagged)
         {
             player.GetComponent<RocketTree>().SpawnSeed();
+            isTagged = true;
         }
     }
 
