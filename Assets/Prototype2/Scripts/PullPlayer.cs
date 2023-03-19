@@ -44,8 +44,16 @@ public class PullPlayer : GameBehaviour
     {
         //player.transform.Translate(Time.deltaTime * pullSpeed * planetCenter.transform.position); 
         Vector3 playerDirection = planetCenter.transform.position - player.transform.position;
-        Vector3 seedDirection = planetCenter.transform.position - player.transform.position;
         player.GetComponent<Rigidbody>().AddForce(pullSpeed * playerDirection);
-        seed.GetComponent<Rigidbody>().AddForce(seedPullSpeed * seedDirection);
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+
+        if (other.CompareTag("Seed"))
+        {
+            Vector3 direction = planetCenter.transform.position - other.transform.position;
+            other.GetComponent<Rigidbody>().AddForce(seedPullSpeed * direction);
+        }
     }
 }

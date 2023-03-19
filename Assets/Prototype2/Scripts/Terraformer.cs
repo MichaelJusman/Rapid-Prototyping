@@ -6,11 +6,13 @@ public class Terraformer : GameBehaviour
 {
     public GameObject mainPlanet;
     public GameObject terraformedPlanet;
+    public Light spotlight;
 
     public void Start()
     {
         mainPlanet.SetActive(true);
         terraformedPlanet.SetActive(false);
+        spotlight = GetComponent<Light>();
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -21,6 +23,7 @@ public class Terraformer : GameBehaviour
             mainPlanet.SetActive(false);
             Destroy(collision.gameObject);
             _GM2.AddScore(1);
+            spotlight.color = Color.green;
         }
 
         if (collision.collider.CompareTag("Player"))
