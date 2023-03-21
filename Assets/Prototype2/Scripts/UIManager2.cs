@@ -14,13 +14,15 @@ public class UIManager2 : GameBehaviour<UIManager2>
     public float speedValue;
 
     public TMP_Text scoreText;
-    public TMP_Text lostText;
+
     public GameObject lostPanel;
+    public GameObject strandedPanel;
 
 
     void Start()
     {
        lostPanel.SetActive(false);
+       strandedPanel.SetActive(false);
     }
     public void Update()
     {
@@ -39,6 +41,11 @@ public class UIManager2 : GameBehaviour<UIManager2>
     public void OnMapExit()
     {
         lostPanel.SetActive(true);
+    }
+
+    public void OnStranded()
+    {
+        strandedPanel.SetActive(true);
     }
 
     public void OnGameEnd()

@@ -65,7 +65,10 @@ public class RocketTree : GameBehaviour<RocketTree>
             rocketThruster.GetComponent<ParticleSystem>().Stop();
 
         if (rb.velocity.z == 0 && !isDocked && !isBoosted)
+        {
             DelayedDeath();
+            _UI2.OnStranded();
+        }
     }
 
     IEnumerator BoostDuration(float _time)
@@ -96,6 +99,22 @@ public class RocketTree : GameBehaviour<RocketTree>
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
         _UI2.OnGameEnd();
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Planet"))
+        {
+            InstantDeath();
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Atmostphere"))
+        {
+            isBoosted=true;
+        }
     }
 
     //public void ZoomOut()

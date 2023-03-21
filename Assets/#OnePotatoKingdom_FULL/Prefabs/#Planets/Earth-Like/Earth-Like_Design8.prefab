@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5991814328001342874}
   - component: {fileID: 3349611449152608172}
   - component: {fileID: 9025421147392011093}
+  - component: {fileID: 4477343403647810128}
   m_Layer: 9
   m_Name: Earth-Like_Design8
   m_TagString: Planet
@@ -87,3 +88,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &4477343403647810128
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312837243298340745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: -0.004739523, y: -0.017646074, z: -0.027421609}
