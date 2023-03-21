@@ -208,7 +208,7 @@ MonoBehaviour:
   planetCenter: {fileID: 28782018828226054}
   seedTree: {fileID: 8923573416846665630, guid: fc8948168533c8647be40541326fa52e, type: 3}
   player: {fileID: 0}
-  pullSpeed: 50
+  pullSpeed: 100
   sphereRadius: 5
   treeSeedLayer:
     serializedVersion: 2
@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7334002864365421237}
   m_Layer: 2
-  m_Name: Medium Planet
+  m_Name: Large Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   seed: {fileID: 0}
   planetCenter: {fileID: 28782018828226054}
   pullSpeed: 30
-  seedPullSpeed: 50
+  seedPullSpeed: 100
 --- !u!114 &2047165420060516079
 MonoBehaviour:
   m_ObjectHideFlags: 0
