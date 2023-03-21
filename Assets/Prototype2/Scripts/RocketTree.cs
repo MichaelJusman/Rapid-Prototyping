@@ -33,42 +33,48 @@ public class RocketTree : GameBehaviour<RocketTree>
     // Update is called once per frame
     void Update()
     {
-          
-
-        ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit) && isDocked)
+        if (_GSM.gameState == GameState.Playing)
         {
-            if (hit.collider == planeCollider)
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit) && isDocked)
             {
-                rb.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                if (hit.collider == planeCollider)
+                {
+                    rb.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && isDocked)
+            {
+                isDocked = false;
+                isBoosted = true;
+                //ZoomOut();
+            }
+
+            if (!isDocked && isBoosted)
+            {
+                speed = _UI2.speedValue;
+                rb.AddForce(transform.forward * speed);
+                StartCoroutine(BoostDuration(boostDuration));
+
+            }
+
+            if (isBoosted)
+                rocketThruster.GetComponent<ParticleSystem>().Play();
+            else
+                rocketThruster.GetComponent<ParticleSystem>().Stop();
+
+            if (rb.velocity.z == 0 && !isDocked && !isBoosted)
+            {
+                DelayedDeath();
+                _UI2.OnStranded();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isDocked)
-        {
-            isDocked = false;
-            isBoosted = true;
-            //ZoomOut();
-        }
-        
-        if(!isDocked && isBoosted)
-        {
-            speed = _UI2.speedValue;
-            rb.AddForce(transform.forward * speed);
-            StartCoroutine(BoostDuration(boostDuration));
-
-        }
-
-        if (isBoosted)
-            rocketThruster.GetComponent<ParticleSystem>().Play();
         else
-            rocketThruster.GetComponent<ParticleSystem>().Stop();
+            return;
 
-        if (rb.velocity.z == 0 && !isDocked && !isBoosted)
-        {
-            DelayedDeath();
-            _UI2.OnStranded();
-        }
+
+        
     }
 
     IEnumerator BoostDuration(float _time)

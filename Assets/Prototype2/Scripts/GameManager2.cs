@@ -10,9 +10,7 @@ public class GameManager2 : GameBehaviour<GameManager2>
     public int scoreMultiplier = 1;
 
     public int currentScore = 0;
-    public int bestScore;
-
-    public GameState gameState;
+    public int bestScore = 0;
 
     public bool isPlaying;
     public bool isPaused;
@@ -56,10 +54,10 @@ public class GameManager2 : GameBehaviour<GameManager2>
 
     public void Setup()
     {
-        switch(gameState)
+        switch(_GSM.gameState)
         {
             case GameState.Instruction:
-                isPaused = true;
+                isPaused = false;
                 isPlaying = false;
                 Time.timeScale = 0;
                 break;
@@ -90,7 +88,7 @@ public class GameManager2 : GameBehaviour<GameManager2>
         currentScore = score;
         _UI2.UpdateCurrentScore(currentScore);
 
-        if (currentScore <= bestScore)
+        if (currentScore >= bestScore)
         {
             bestScore = currentScore;
             PlayerPrefs.SetFloat("BestTime", bestScore);

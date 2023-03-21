@@ -81,4 +81,9 @@ public class UIManager2 : GameBehaviour<UIManager2>
         pausePanel.SetActive(false);
     }
 
+    public void callEndGame()
+    {
+        _GM2.OnGameEnd();
+    }
+
 }
