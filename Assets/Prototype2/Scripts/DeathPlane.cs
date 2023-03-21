@@ -8,7 +8,12 @@ public class DeathPlane : GameBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        _RT.DelayedDeath();
-        _UI2.OnMapExit();
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Im hit");
+            _RT.DelayedDeath();
+            _UI2.OnMapExit();
+        }
+        
     }
 }
