@@ -25,4 +25,9 @@ public class SceneController : GameBehaviour<SceneController>
     {
         Application.Quit();
     }
+
+    public string GetSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
 }

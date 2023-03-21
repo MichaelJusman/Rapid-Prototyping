@@ -7,6 +7,6 @@ public class Instructions : GameBehaviour
 
     public void CloseInstructions()
     {
-        _GMS.ChangeGameState(GameState.Playing);
+        _GSM.ChangeGameState(GameState.Playing);
     }
 }

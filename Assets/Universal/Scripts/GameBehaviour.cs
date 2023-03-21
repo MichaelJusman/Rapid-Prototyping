@@ -11,7 +11,7 @@ public class GameBehaviour : MJ.Behaviour
     protected static PlayerMovement _PM { get { return PlayerMovement.Instance; } }
     protected static Timer _TIMER { get { return Timer.Instance; } }
     protected static GameManager _GM { get { return GameManager.Instance; } }
-    protected static GameStateManager _GMS { get { return GameStateManager.Instance; } }
+    protected static GameStateManager _GSM { get { return GameStateManager.Instance; } }
 
     //Prototype2
     protected static GameManager2 _GM2 { get { return GameManager2.Instance; } }

@@ -98,7 +98,7 @@ public class RocketTree : GameBehaviour<RocketTree>
         dieExplosion.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
-        _UI2.OnGameEnd();
+        _GM2.OnGameEnd();
     }
 
     public void OnCollisionEnter(Collision collision)

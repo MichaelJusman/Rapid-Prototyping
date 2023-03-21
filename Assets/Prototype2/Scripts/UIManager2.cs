@@ -7,13 +7,18 @@ using UnityEngine.UI;
 
 public class UIManager2 : GameBehaviour<UIManager2>
 {
-    public GameObject lostTextParent;
     
     public Slider speedSlider;
     public TMP_Text speedText;
     public float speedValue;
 
     public TMP_Text scoreText;
+    public TMP_Text currentScoreText;
+    public TMP_Text bestScoreText;
+
+    public GameObject gameOverPanel;
+    public GameObject pausePanel;
+
 
     public GameObject lostPanel;
     public GameObject strandedPanel;
@@ -21,8 +26,11 @@ public class UIManager2 : GameBehaviour<UIManager2>
 
     void Start()
     {
-       lostPanel.SetActive(false);
-       strandedPanel.SetActive(false);
+        lostPanel.SetActive(false);
+        strandedPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
+
     }
     public void Update()
     {
@@ -38,6 +46,16 @@ public class UIManager2 : GameBehaviour<UIManager2>
         scoreText.text = "Score: " + _score;
     }
 
+    public void UpdateCurrentScore(int _score)
+    {
+        currentScoreText.text = "Your Score: " + _score;
+    }
+
+    public void UpdateBestScore(int _score)
+    {
+        bestScoreText.text = "Best Score: " + _score;
+    }
+
     public void OnMapExit()
     {
         lostPanel.SetActive(true);
@@ -50,6 +68,17 @@ public class UIManager2 : GameBehaviour<UIManager2>
 
     public void OnGameEnd()
     {
-
+        gameOverPanel.SetActive(true);
     }
+    
+    public void OnPause()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void OnResume()
+    {
+        pausePanel.SetActive(false);
+    }
+
 }
