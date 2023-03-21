@@ -7,12 +7,12 @@ public class Terraformer : GameBehaviour
     public GameObject mainPlanet;
     public GameObject terraformedPlanet;
     public Light spotlight;
+    public GameObject greenSmoke;
 
     public void Start()
     {
         mainPlanet.SetActive(true);
         terraformedPlanet.SetActive(false);
-        spotlight = GetComponent<Light>();
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -23,12 +23,13 @@ public class Terraformer : GameBehaviour
             mainPlanet.SetActive(false);
             Destroy(collision.gameObject);
             _GM2.AddScore(1);
-            spotlight.color = Color.green;
+            spotlight.GetComponent<Light>().color = Color.green;
+            greenSmoke.GetComponent<ParticleSystem>().Play();
         }
 
         if (collision.collider.CompareTag("Player"))
         {
-            _RT.Die();
+            _RT.InstantDeath();
         }
     }
 }

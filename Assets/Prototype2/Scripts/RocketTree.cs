@@ -19,14 +19,14 @@ public class RocketTree : GameBehaviour<RocketTree>
     public bool isBoosted  = false;
 
     public GameObject seedTree;
-    public GameObject rocketFire;
+    public GameObject dieExplosion;
+    public GameObject rocketThruster;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         planeCollider = GameObject.FindWithTag("Plane").GetComponent<Collider>();
-        rocketFire.SetActive(false);
         Physics.IgnoreLayerCollision(3, 8);
     }
 
@@ -60,12 +60,12 @@ public class RocketTree : GameBehaviour<RocketTree>
         }
 
         if (isBoosted)
-            rocketFire.SetActive(true);
+            rocketThruster.GetComponent<ParticleSystem>().Play();
         else
-            rocketFire.SetActive(false);
+            rocketThruster.GetComponent<ParticleSystem>().Stop();
 
         if (rb.velocity.z == 0 && !isDocked && !isBoosted)
-            Die();
+            DelayedDeath();
     }
 
     IEnumerator BoostDuration(float _time)
@@ -79,14 +79,21 @@ public class RocketTree : GameBehaviour<RocketTree>
         Instantiate(seedTree, transform.position, transform.rotation);
     }
 
-    public void Die()
+    public void DelayedDeath()
     {
         StartCoroutine(ProlongDeathSequence(3));
+    }
+
+    public void InstantDeath()
+    {
+        StartCoroutine(ProlongDeathSequence(1));
     }
 
     IEnumerator ProlongDeathSequence(float _time)
     {
         yield return new WaitForSeconds(_time);
+        dieExplosion.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
         _UI2.OnGameEnd();
     }

@@ -8,6 +8,7 @@ public class DeathPlane : GameBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        _RT.Die();
+        _RT.DelayedDeath();
+        _UI2.OnMapExit();
     }
 }
