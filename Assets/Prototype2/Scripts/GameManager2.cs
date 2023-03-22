@@ -22,27 +22,33 @@ public class GameManager2 : GameBehaviour<GameManager2>
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (_GSM.gameState == GameState.Playing)
         {
-            if (!isPlaying && !isPaused)
-                return;
-
-            if (isPlaying)
-            {
-                _GSM.ChangeGameState(GameState.Pause);
-                Time.timeScale = 0;
-                _UI2.OnPause();
-            }
-
-            if (isPaused)
-            {
-                _GSM.ChangeGameState(GameState.Playing);
-                Time.timeScale = 1;
-                _UI2.OnResume();
-            }
-
-
+            isPlaying = true;
+            isPaused = false;
         }
+
+
+        if (_GSM.gameState == GameState.Pause)
+        {
+            isPlaying = false;
+            isPaused = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isPlaying)
+        {
+            _GSM.ChangeGameState(GameState.Pause);
+            Time.timeScale = 0;
+            _UI2.OnPause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            _GSM.ChangeGameState(GameState.Playing);
+            Time.timeScale = 1;
+            _UI2.OnResume();
+        }
+
     }
 
     public void AddScore(int _score)
@@ -51,33 +57,6 @@ public class GameManager2 : GameBehaviour<GameManager2>
         _UI2.UpdateScore(score);
 
     }
-
-    public void Setup()
-    {
-        switch(_GSM.gameState)
-        {
-            case GameState.Instruction:
-                isPaused = false;
-                isPlaying = false;
-                Time.timeScale = 0;
-                break;
-            case GameState.Pause:
-                isPaused = true;
-                isPlaying = false;
-                Time.timeScale = 0;
-                break;
-            case GameState.Playing:
-                isPlaying = true;
-                isPaused = false;
-                Time.timeScale = 1;
-                break;
-            case GameState.GameOver:
-                Time.timeScale = 0;
-                break;
-
-        }
-    }
-
     
     public void OnGameEnd()
     {
@@ -104,6 +83,7 @@ public class GameManager2 : GameBehaviour<GameManager2>
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        _GSM.ChangeGameState(GameState.Playing);
         _UI2.OnResume();
     }
 
