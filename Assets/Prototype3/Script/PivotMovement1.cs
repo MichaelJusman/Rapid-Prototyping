@@ -29,14 +29,14 @@ public class PivotMovement1 : GameBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            mouthPivot.transform.RotateAround(mouthPivot.transform.position, -Vector3.left, rotationSpeed * Time.deltaTime);
+            mouthPivot.transform.Rotate(-Vector3.left, rotationSpeed * Time.deltaTime);
             
             //mouthPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.left, rotationSpeed * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            mouthPivot.transform.RotateAround(mouthPivot.transform.position, Vector3.left, rotationSpeed * Time.deltaTime);
+            mouthPivot.transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime);
             //mouthPivot.transform.RotateAround(neckPivot.transform.position, Vector3.left, rotationSpeed * Time.deltaTime);
         }
 

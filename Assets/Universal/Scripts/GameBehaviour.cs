@@ -16,7 +16,13 @@ public class GameBehaviour : MJ.Behaviour
     //Prototype2
     protected static GameManager2 _GM2 { get { return GameManager2.Instance; } }
     protected static UIManager2 _UI2 { get { return UIManager2.Instance; } } 
-    protected static RocketTree _RT { get { return RocketTree.Instance; } } 
+    protected static RocketTree _RT { get { return RocketTree.Instance; } }
+
+    //Prototype3
+    protected static GameManager3 _GM3 { get { return GameManager3.Instance; } }
+    protected static UIManager3 _UI3 { get { return UIManager3.Instance; } }
+    protected static Dialogue _DI { get { return Dialogue.Instance; } }
+    protected static CameraController3 _CM3 { get { return CameraController3.Instance; } }
 
 
     public enum GameState { Title, Instruction, Playing, Pause, GameOver }
