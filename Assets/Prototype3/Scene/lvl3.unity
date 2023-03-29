@@ -3242,7 +3242,7 @@ GameObject:
   - component: {fileID: 1015137288}
   - component: {fileID: 1015137287}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Reye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3281,7 +3281,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8514e10dbd4b3b040bbb98bc83b04010, type: 2}
+  - {fileID: 2100000, guid: 7ac9ed335992543468c3887cf6ba84f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3708,7 +3708,7 @@ GameObject:
   - component: {fileID: 1182293458}
   - component: {fileID: 1182293457}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Leye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3747,7 +3747,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8514e10dbd4b3b040bbb98bc83b04010, type: 2}
+  - {fileID: 2100000, guid: 7ac9ed335992543468c3887cf6ba84f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3832,6 +3832,7 @@ MonoBehaviour:
   - {fileID: 693814904}
   foodType:
   - {fileID: 2800196499907748955, guid: 1182688621e38a84ca573a14669f65d4, type: 3}
+  - {fileID: 2565569522731611408, guid: 5d578f4209b94be41bab350cc84833cb, type: 3}
   foodSpeed: 0
   targetTime: 0
   playerHead: {fileID: 210115673}
@@ -3950,8 +3951,8 @@ GameObject:
   - component: {fileID: 1260888057}
   - component: {fileID: 1260888056}
   m_Layer: 0
-  m_Name: Cube (3)
-  m_TagString: Untagged
+  m_Name: Nose
+  m_TagString: Damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3989,7 +3990,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 728b8d022e2b5ae428004fbdb1e4aeae, type: 2}
+  - {fileID: 2100000, guid: e2589a6e1b483274189f70ca61ddf572, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

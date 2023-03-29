@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Poo : MonoBehaviour
+public class Poo : GameBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Rigidbody rb;
+    public GameObject player;
+    public float speed = 5;
+
+    public void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        rb.transform.LookAt(player.transform);
+        rb.AddForce(transform.forward * speed);
+    }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.collider.CompareTag("Star"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.collider.CompareTag("Damager"))
+        {
+            Destroy(gameObject);
+        }
+
+
     }
 }
