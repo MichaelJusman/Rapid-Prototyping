@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraController3 : GameBehaviour<CameraController3>
 {
-    public Camera cam;
     public Animator anim;
+    public GameObject player;
     
     // Start is called before the first frame update
     void Start()
