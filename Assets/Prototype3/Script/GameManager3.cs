@@ -31,4 +31,15 @@ public class GameManager3 : GameBehaviour<GameManager3>
         _UI3.UpdateScore(score);
 
     }
+
+    public void DecreaseScore(int _score)
+    {
+        if(score>0)
+        {
+            score -= _score * scoreMultiplier;
+            _UI3.UpdateScore(score);
+        }
+        
+
+    }
 }

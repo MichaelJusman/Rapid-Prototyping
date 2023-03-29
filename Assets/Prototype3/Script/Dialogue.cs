@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Dialogue : GameBehaviour<Dialogue>
 {
     public GameObject dialoguePanel;
     public GameObject ingamePanel;
+    public GameObject hatePanel;
+
+    public GameObject warningText;
 
     public GameObject page1;
     public GameObject page2;
@@ -20,6 +24,7 @@ public class Dialogue : GameBehaviour<Dialogue>
         page1.SetActive(true);
         page2.SetActive(false);
         page3.SetActive(false);
+        hatePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,6 +36,11 @@ public class Dialogue : GameBehaviour<Dialogue>
     public void CloseDialogue()
     {
         _CM3.PlayGameAnimation();
+        page1.SetActive(false);
+        page2.SetActive(false);
+        page3.SetActive(false);
+        hatePanel.SetActive(true);
+        warningText.SetActive(false);
         Debug.Log("im closing");
     }
 
@@ -46,6 +56,17 @@ public class Dialogue : GameBehaviour<Dialogue>
         page1.SetActive(true);
         page2.SetActive(false);
         page3.SetActive(false);
+        hatePanel.SetActive(false);
+    }
+
+    public void PrickEnter()
+    {
+        warningText.SetActive(true);
+    }
+
+    public void PrickExitr()
+    {
+        warningText.SetActive(false);
     }
 
     public void Page2()
@@ -53,6 +74,7 @@ public class Dialogue : GameBehaviour<Dialogue>
         page1.SetActive(false);
         page2.SetActive(true);
         page3.SetActive(false);
+        hatePanel.SetActive(false);
     }
 
     public void Page3()
@@ -60,5 +82,6 @@ public class Dialogue : GameBehaviour<Dialogue>
         page1.SetActive(false);
         page2.SetActive(false);
         page3.SetActive(true);
+        hatePanel.SetActive(false);
     }
 }

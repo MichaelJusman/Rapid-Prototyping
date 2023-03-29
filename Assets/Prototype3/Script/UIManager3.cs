@@ -7,6 +7,7 @@ public class UIManager3 : GameBehaviour<UIManager3>
 {
 
     public TMP_Text scoreText;
+    public TMP_Text healthText;
 
     public GameObject gameOverPanel;
     public GameObject pausePanel;
@@ -28,6 +29,11 @@ public class UIManager3 : GameBehaviour<UIManager3>
     public void UpdateScore(int _score)
     {
         scoreText.text = "Score: " + _score;
+    }
+
+    public void UpdateHeath(int _heath)
+    {
+        healthText.text = "Heath: " + _heath;
     }
 
     public void OnGameEnd()

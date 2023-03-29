@@ -23,16 +23,21 @@ public class Poo : GameBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             Destroy(gameObject);
+            _GM3.DecreaseScore(1);
+            _PM1.TakeDamage(1);
         }
 
         if (collision.collider.CompareTag("Star"))
         {
             Destroy(gameObject);
+            _GM3.DecreaseScore(2);
+            _PM1.TakeDamage(2);
         }
 
         if (collision.collider.CompareTag("Damager"))
         {
             Destroy(gameObject);
+            
         }
 
 

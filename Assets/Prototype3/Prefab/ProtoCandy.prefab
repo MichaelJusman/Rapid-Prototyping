@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2889106824286038540}
   - component: {fileID: 5921743372038256716}
   - component: {fileID: 2466416521290074160}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ProtoCandy
   m_TagString: Seed
   m_Icon: {fileID: 0}
