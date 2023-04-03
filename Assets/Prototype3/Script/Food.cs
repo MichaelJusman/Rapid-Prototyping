@@ -8,7 +8,7 @@ public class Food : GameBehaviour
 
     public Rigidbody rb;
     public GameObject player;
-    public float speed = 5;
+    public float speed = 2;
 
     public void Start()
     {
@@ -18,7 +18,7 @@ public class Food : GameBehaviour
     public void Update()
     {
         rb.transform.LookAt(player.transform);
-        rb.AddForce(transform.forward * speed);
+        rb.AddForce(transform.forward * _FS.projectileSpeed * Time.deltaTime);
     }
     public void OnCollisionEnter(Collision collision)
     {

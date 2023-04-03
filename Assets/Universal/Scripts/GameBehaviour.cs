@@ -24,6 +24,7 @@ public class GameBehaviour : MJ.Behaviour
     protected static Dialogue _DI { get { return Dialogue.Instance; } }
     protected static CameraController3 _CM3 { get { return CameraController3.Instance; } }
     protected static PivotMovement1 _PM1 { get { return PivotMovement1.Instance; } }
+    protected static FoodSpawner _FS { get { return FoodSpawner.Instance; } }
 
 
     public enum GameState { Title, Instruction, Playing, Pause, GameOver }
