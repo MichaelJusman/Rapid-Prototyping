@@ -36,6 +36,7 @@ public class Food : GameBehaviour
         if (collision.collider.CompareTag("Damager"))
         {
             Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
 
 

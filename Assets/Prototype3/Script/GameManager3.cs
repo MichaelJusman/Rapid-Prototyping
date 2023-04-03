@@ -45,7 +45,7 @@ public class GameManager3 : GameBehaviour<GameManager3>
 
     public void AddMouthValue(int _mouth)
     {
-        if(mouthScore < 10)
+        if(mouthScore < 3)
         {
             mouthScore += _mouth;
         }
@@ -60,8 +60,19 @@ public class GameManager3 : GameBehaviour<GameManager3>
 
     public void ConvertMouthToScore()
     {
-        score += mouthScore;
-        RemoveMouthValue();
-        _UI3.UpdateScore(score);
+        if(mouthScore == 3)
+        {
+            score += mouthScore;
+            RemoveMouthValue();
+            _UI3.UpdateScore(score);
+            _PM1.Heal(1);
+        }
+        else
+        {
+            score += mouthScore;
+            RemoveMouthValue();
+            _UI3.UpdateScore(score);
+        }
+        
     }
 }

@@ -14,13 +14,16 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
     public GameObject neckPivot; //position of the point you want to rotate around
     public GameObject mouthPivot; //position of the point you want to rotate around
     public GameObject fireBreath; 
+    public Transform firingPoint; 
 
 
     public GameObject fireParticles; 
     public GameObject fireExplosion; 
+    public GameObject fireBall; 
 
     public float rotationSpeed = 20;
     public float mouthRotation;
+    public float bulletSpeed = 100;
 
     public int maxHealth = 10;
     public int currentHealth;
@@ -90,32 +93,50 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
             isOpen = false;
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if(Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if(isOpen)
+            if (isOpen)
             {
-                fireBreath.SetActive(true);
-                fireParticles.GetComponent<ParticleSystem>().Play();
+                GameObject projectileInstance = Instantiate(fireBall, firingPoint.position, firingPoint.rotation);
+
+                projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
+
+                Destroy(projectileInstance, 2);
+
                 _GM3.RemoveMouthValue();
             }
             else
             {
                 TakeDamage(1);
                 fireExplosion.GetComponent<ParticleSystem>().Play();
-                
+
             }
-
-            //mouthPivot.transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime);
-            //mouthPivot.transform.RotateAround(neckPivot.transform.position, Vector3.left, rotationSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            fireBreath.SetActive(false);
-            fireParticles.GetComponent<ParticleSystem>().Stop();
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
+        //    if(isOpen)
+        //    {
+        //        //fireBreath.SetActive(true);
+        //        fireParticles.GetComponent<ParticleSystem>().Play();
+        //        _GM3.RemoveMouthValue();
+        //    }
+        //    else
+        //    {
+        //        TakeDamage(1);
+        //        fireExplosion.GetComponent<ParticleSystem>().Play();
+                
+        //    }
+
+        //    //mouthPivot.transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime);
+        //    //mouthPivot.transform.RotateAround(neckPivot.transform.position, Vector3.left, rotationSpeed * Time.deltaTime);
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.Mouse1))
+        //{
+        //    //fireBreath.SetActive(false);
+        //    fireParticles.GetComponent<ParticleSystem>().Stop();
+        //}
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
@@ -142,5 +163,11 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Heal(int _heal)
+    {
+        currentHealth += _heal;
+        _UI3.UpdateHeath(currentHealth);
     }
 }
