@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager3 : GameBehaviour<UIManager3>
 {
@@ -11,6 +12,8 @@ public class UIManager3 : GameBehaviour<UIManager3>
 
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+
+    public Slider mouthSlider;
 
 
 
@@ -54,5 +57,10 @@ public class UIManager3 : GameBehaviour<UIManager3>
     public void callEndGame()
     {
         //_GM3.OnGameEnd();
+    }
+
+    public void UpdateMouthSlider(int _mouth)
+    {
+        mouthSlider.value = _mouth;
     }
 }

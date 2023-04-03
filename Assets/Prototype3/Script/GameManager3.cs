@@ -9,6 +9,7 @@ public class GameManager3 : GameBehaviour<GameManager3>
 
     public int currentScore = 0;
     public int bestScore = 0;
+    public int mouthScore = 0;
 
     public bool isPlaying;
     public bool isPaused;
@@ -29,6 +30,7 @@ public class GameManager3 : GameBehaviour<GameManager3>
     {
         score += _score * scoreMultiplier;
         _UI3.UpdateScore(score);
+        
 
     }
 
@@ -39,7 +41,27 @@ public class GameManager3 : GameBehaviour<GameManager3>
             score -= _score * scoreMultiplier;
             _UI3.UpdateScore(score);
         }
-        
+    }
 
+    public void AddMouthValue(int _mouth)
+    {
+        if(mouthScore < 10)
+        {
+            mouthScore += _mouth;
+        }
+        _UI3.UpdateMouthSlider(mouthScore);
+    }
+
+    public void RemoveMouthValue()
+    {
+        mouthScore = 0;
+        _UI3.UpdateMouthSlider(mouthScore);
+    }
+
+    public void ConvertMouthToScore()
+    {
+        score += mouthScore;
+        RemoveMouthValue();
+        _UI3.UpdateScore(score);
     }
 }

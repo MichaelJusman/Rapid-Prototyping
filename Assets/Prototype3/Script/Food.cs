@@ -30,7 +30,7 @@ public class Food : GameBehaviour
         if (collision.collider.CompareTag("Star"))
         {
             Destroy(gameObject);
-            _GM3.AddScore(1);
+            _GM3.AddMouthValue(1);
         }
 
         if (collision.collider.CompareTag("Damager"))
