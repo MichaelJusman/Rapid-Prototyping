@@ -36,39 +36,39 @@ public class FoodSpawner : GameBehaviour<FoodSpawner>
     public void Update()
     {
 
-        if(spawnCounter == 5 && level1)
-        {
-            projectileSpeed += increaseSpeed;
-            level1 = false;
-            level2 = true;
-        }
+        //if(spawnCounter == 5 && level1)
+        //{
+        //    projectileSpeed += increaseSpeed;
+        //    level1 = false;
+        //    level2 = true;
+        //}
 
-        if (spawnCounter == 10 && level2)
-        {
-            projectileSpeed += increaseSpeed;
-            level2 = false;
-            level3 = true;
-        }
+        //if (spawnCounter == 10 && level2)
+        //{
+        //    projectileSpeed += increaseSpeed;
+        //    level2 = false;
+        //    level3 = true;
+        //}
 
-        if (spawnCounter == 15 && level3)
-        {
-            projectileSpeed += increaseSpeed;
-            level3 = false;
-            level4 = true;
-        }
+        //if (spawnCounter == 15 && level3)
+        //{
+        //    projectileSpeed += increaseSpeed;
+        //    level3 = false;
+        //    level4 = true;
+        //}
 
-        if (spawnCounter == 20 && level4)
-        {
-            projectileSpeed += increaseSpeed;
-            level4 = false;
-            level5 = true;
-        }
+        //if (spawnCounter == 20 && level4)
+        //{
+        //    projectileSpeed += increaseSpeed;
+        //    level4 = false;
+        //    level5 = true;
+        //}
 
-        if (spawnCounter == 25 && level5)
-        {
-            projectileSpeed += increaseSpeed;
-            level5 = false;
-        }
+        //if (spawnCounter == 25 && level5)
+        //{
+        //    projectileSpeed += increaseSpeed;
+        //    level5 = false;
+        //}
 
 
         if (_GSM.gameState == GameState.Playing)
