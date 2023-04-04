@@ -79,6 +79,7 @@ public class FoodSpawner : GameBehaviour<FoodSpawner>
                 SpawnFood();
                 targetTime = Random.Range(minimumTime, maximumTime);
                 spawnCounter++;
+                _UI3.UpdateWave(spawnCounter);
             }
         }
         else

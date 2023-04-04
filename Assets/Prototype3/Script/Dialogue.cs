@@ -18,6 +18,7 @@ public class Dialogue : GameBehaviour<Dialogue>
     public GameObject page4;
     public GameObject page5;
     public GameObject page6;
+    public GameObject page7;
 
     
     // Start is called before the first frame update
@@ -69,6 +70,15 @@ public class Dialogue : GameBehaviour<Dialogue>
         Debug.Log("im closing");
     }
 
+    public void PrickEnter()
+    {
+        warningText.SetActive(true);
+    }
+    public void PrickExitr()
+    {
+        warningText.SetActive(false);
+    }
+
     public void Page1()
     {
         page1.SetActive(true);
@@ -77,18 +87,9 @@ public class Dialogue : GameBehaviour<Dialogue>
         page4.SetActive(false);
         page5.SetActive(false);
         page6.SetActive(false);
+        page7.SetActive(false);
         hatePanel.SetActive(false);
         closePanel.SetActive(false);
-    }
-
-    public void PrickEnter()
-    {
-        warningText.SetActive(true);
-    }
-
-    public void PrickExitr()
-    {
-        warningText.SetActive(false);
     }
 
     public void Page2()
@@ -99,6 +100,7 @@ public class Dialogue : GameBehaviour<Dialogue>
         page4.SetActive(false);
         page5.SetActive(false);
         page6.SetActive(false);
+        page7.SetActive(false);
         hatePanel.SetActive(false);
     }
 
@@ -110,6 +112,7 @@ public class Dialogue : GameBehaviour<Dialogue>
         page4.SetActive(false);
         page5.SetActive(false);
         page6.SetActive(false);
+        page7.SetActive(false);
         hatePanel.SetActive(false);
         closePanel.SetActive(false);
     }
@@ -122,6 +125,7 @@ public class Dialogue : GameBehaviour<Dialogue>
         page4.SetActive(true);
         page5.SetActive(false);
         page6.SetActive(false);
+        page7.SetActive(false);
         hatePanel.SetActive(false);
         closePanel.SetActive(false);
     }
@@ -134,6 +138,7 @@ public class Dialogue : GameBehaviour<Dialogue>
         page4.SetActive(false);
         page5.SetActive(true);
         page6.SetActive(false);
+        page7.SetActive(false);
         hatePanel.SetActive(false);
         closePanel.SetActive(false);
     }
@@ -146,6 +151,20 @@ public class Dialogue : GameBehaviour<Dialogue>
         page4.SetActive(false);
         page5.SetActive(false);
         page6.SetActive(true);
+        page7.SetActive(false);
+        hatePanel.SetActive(false);
+        closePanel.SetActive(false);
+    }
+
+    public void Page7()
+    {
+        page1.SetActive(false);
+        page2.SetActive(false);
+        page3.SetActive(false);
+        page4.SetActive(false);
+        page5.SetActive(false);
+        page6.SetActive(false);
+        page7.SetActive(true);
         hatePanel.SetActive(false);
         closePanel.SetActive(false);
     }

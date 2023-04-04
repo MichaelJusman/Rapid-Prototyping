@@ -23,7 +23,42 @@ public class GameManager3 : GameBehaviour<GameManager3>
     // Update is called once per frame
     void Update()
     {
-        
+        if (_GSM.gameState == GameState.Playing)
+        {
+            isPlaying = true;
+            isPaused = false;
+        }
+
+
+        if (_GSM.gameState == GameState.Pause)
+        {
+            isPlaying = false;
+            isPaused = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isPlaying)
+        {
+            OnPaused();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            OnResume();
+        }
+    }
+
+    public void OnPaused()
+    {
+        _GSM.ChangeGameState(GameState.Pause);
+        Time.timeScale = 0;
+        _UI3.OnPause();
+    }
+
+    public void OnResume()
+    {
+        _GSM.ChangeGameState(GameState.Playing);
+        Time.timeScale = 1;
+        _UI3.OnResume();
     }
 
     public void AddScore(int _score)
@@ -49,6 +84,12 @@ public class GameManager3 : GameBehaviour<GameManager3>
         {
             mouthScore += _mouth;
         }
+
+        if(mouthScore > 3)
+        {
+            mouthScore = 3;
+        }
+
         _UI3.UpdateMouthSlider(mouthScore);
     }
 
@@ -74,5 +115,12 @@ public class GameManager3 : GameBehaviour<GameManager3>
             _UI3.UpdateScore(score);
         }
         
+    }
+
+    public void OnGameEnd()
+    {
+        _GSM.ChangeGameState(GameState.GameOver);
+        _UI3.OnGameEnd();
+        _UI3.UpdateFinalScoreText(score);
     }
 }

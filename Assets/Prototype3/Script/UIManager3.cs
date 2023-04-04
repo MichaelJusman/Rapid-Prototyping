@@ -9,6 +9,8 @@ public class UIManager3 : GameBehaviour<UIManager3>
 
     public TMP_Text scoreText;
     public TMP_Text healthText;
+    public TMP_Text waveText;
+    public TMP_Text finalScoreText;
 
     public GameObject gameOverPanel;
     public GameObject pausePanel;
@@ -34,6 +36,16 @@ public class UIManager3 : GameBehaviour<UIManager3>
         scoreText.text = "Score: " + _score;
     }
 
+    public void UpdateFinalScoreText(int _score)
+    {
+        finalScoreText.text = "Score: " + _score;
+    }
+
+    public void UpdateWave(int _wave)
+    {
+        waveText.text = "Wave: " + _wave;
+    }
+
     public void UpdateHeath(int _heath)
     {
         healthText.text = "Heath: " + _heath;
@@ -54,9 +66,9 @@ public class UIManager3 : GameBehaviour<UIManager3>
         pausePanel.SetActive(false);
     }
 
-    public void callEndGame()
+    public void CallEndGame()
     {
-        //_GM3.OnGameEnd();
+        _GM3.OnGameEnd();
     }
 
     public void UpdateMouthSlider(int _mouth)

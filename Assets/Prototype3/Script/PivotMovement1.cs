@@ -45,73 +45,119 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
 
     void Update()
     {
-        ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (_GSM.gameState == GameState.Playing)
         {
-            if (hit.collider == planeCollider)
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
             {
-                rb.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                if (hit.collider == planeCollider)
+                {
+                    rb.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                }
+            }
+
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                anim.SetTrigger("OpenMouth");
+                anim.ResetTrigger("CloseMouth");
+                isOpen = true;
+
+                //mouthPivot.transform.Rotate(-Vector3.left, rotationSpeed * Time.deltaTime);
+
+                //mouthPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.left, rotationSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                anim.SetTrigger("CloseMouth");
+                anim.ResetTrigger("OpenMouth");
+                _GM3.ConvertMouthToScore();
+                isOpen = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                if (isOpen)
+                {
+                    GameObject projectileInstance = Instantiate(fireBall, firingPoint.position, firingPoint.rotation);
+
+                    projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
+
+                    Destroy(projectileInstance, 2);
+
+                    _GM3.RemoveMouthValue();
+                }
+                else
+                {
+                    TakeDamage(1);
+                    fireExplosion.GetComponent<ParticleSystem>().Play();
+
+                }
+            }
+        }
+
+        if (_GSM.gameState == GameState.Instruction)
+        {
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider == planeCollider)
+                {
+                    rb.transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                }
+            }
+
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                anim.SetTrigger("OpenMouth");
+                anim.ResetTrigger("CloseMouth");
+                isOpen = true;
+
+                //mouthPivot.transform.Rotate(-Vector3.left, rotationSpeed * Time.deltaTime);
+
+                //mouthPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.left, rotationSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                anim.SetTrigger("CloseMouth");
+                anim.ResetTrigger("OpenMouth");
+                _GM3.ConvertMouthToScore();
+                isOpen = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                if (isOpen)
+                {
+                    GameObject projectileInstance = Instantiate(fireBall, firingPoint.position, firingPoint.rotation);
+
+                    projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
+
+                    Destroy(projectileInstance, 2);
+
+                    _GM3.RemoveMouthValue();
+                }
+                else
+                {
+                    //TakeDamage(1);
+                    fireExplosion.GetComponent<ParticleSystem>().Play();
+
+                }
             }
         }
 
 
-        //if (Input.GetKey(KeyCode.Mouse0))
-        //{
-        //    neckPivot.transform.RotateAround(neckPivot.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
-        //    //neckPivot.transform.RotateAround(neckPivot.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
-        //}
-
-        //if (Input.GetKey(KeyCode.Mouse1))
-        //{
-        //    neckPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.up, rotationSpeed * Time.deltaTime);
-        //    //neckPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.up, rotationSpeed * Time.deltaTime);
-        //}
-
-        //float xAxisValue = Input.GetAxis("Vertical") * rotationSpeed;
-
-        ////transform.position = new Vector3(transform.position.x + xAxisValue, transform.position.y, transform.position.z + zAxisValue);
-
-        //mouthPivot.transform.position = new Vector3(Mathf.Clamp(transform.position.x + xAxisValue, 0, 90), transform.position.y, transform.position.z);
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            anim.SetTrigger("OpenMouth");
-            anim.ResetTrigger("CloseMouth");
-            isOpen = true;
-            
-            //mouthPivot.transform.Rotate(-Vector3.left, rotationSpeed * Time.deltaTime);
-
-            //mouthPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.left, rotationSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            anim.SetTrigger("CloseMouth");
-            anim.ResetTrigger("OpenMouth");
-            _GM3.ConvertMouthToScore();
-            isOpen = false;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (isOpen)
-            {
-                GameObject projectileInstance = Instantiate(fireBall, firingPoint.position, firingPoint.rotation);
-
-                projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
-
-                Destroy(projectileInstance, 2);
-
-                _GM3.RemoveMouthValue();
-            }
-            else
-            {
-                TakeDamage(1);
-                fireExplosion.GetComponent<ParticleSystem>().Play();
-
-            }
-        }
 
         //if (Input.GetKeyDown(KeyCode.Mouse1))
         //{
@@ -125,7 +171,7 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
         //    {
         //        TakeDamage(1);
         //        fireExplosion.GetComponent<ParticleSystem>().Play();
-                
+
         //    }
 
         //    //mouthPivot.transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime);
@@ -148,10 +194,28 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
         //    fireCollider.SetActive(false);
         //}
 
-        mouthRotation = Input.GetAxis("Vertical") * rotationSpeed;
-        mouthPivot.transform.Rotate(Mathf.Clamp(mouthRotation, 0, 90), 0, 0, Space.Self);
+        //mouthRotation = Input.GetAxis("Vertical") * rotationSpeed;
+        //mouthPivot.transform.Rotate(Mathf.Clamp(mouthRotation, 0, 90), 0, 0, Space.Self);
         //var eulerANgle = mouthPivot.transform.eulerAngles;
         //eulerANgle.y = Mathf.Clamp(mouthPivot.transform.eulerAngles.y, 0, 90);
+
+        //if (Input.GetKey(KeyCode.Mouse0))
+        //{
+        //    neckPivot.transform.RotateAround(neckPivot.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
+        //    //neckPivot.transform.RotateAround(neckPivot.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
+        //}
+
+        //if (Input.GetKey(KeyCode.Mouse1))
+        //{
+        //    neckPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.up, rotationSpeed * Time.deltaTime);
+        //    //neckPivot.transform.RotateAround(neckPivot.transform.position, -Vector3.up, rotationSpeed * Time.deltaTime);
+        //}
+
+        //float xAxisValue = Input.GetAxis("Vertical") * rotationSpeed;
+
+        ////transform.position = new Vector3(transform.position.x + xAxisValue, transform.position.y, transform.position.z + zAxisValue);
+
+        //mouthPivot.transform.position = new Vector3(Mathf.Clamp(transform.position.x + xAxisValue, 0, 90), transform.position.y, transform.position.z);
 
     }
 
@@ -161,7 +225,7 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
         _UI3.UpdateHeath(currentHealth);
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -169,5 +233,16 @@ public class PivotMovement1 : GameBehaviour<PivotMovement1>
     {
         currentHealth += _heal;
         _UI3.UpdateHeath(currentHealth);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+        _GM3.OnGameEnd();
+    }
+
+    public void PauseDeath()
+    {
+        Destroy(gameObject);
     }
 }
