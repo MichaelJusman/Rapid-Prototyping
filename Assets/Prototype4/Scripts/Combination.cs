@@ -43,4 +43,38 @@ public class Combination : MonoBehaviour
         return cubes.Length >= 2 && symbols.Length == cubes.Length - 1
                && symbols.All(s => "+-*/".Contains(s.mathSymbol));
     }
+
+    //public void CheckCombination()
+    //{
+    //    int result = CubeNumber[0].number;
+    //    for (int i = 0; i < CubeSymbols.Length; i++)
+    //    {
+    //        char symbol = symbolCylinders[i].mathSymbol;
+    //        int nextNumber = numberCubes[i + 1].number;
+    //        switch (symbol)
+    //        {
+    //            case '+':
+    //                result += nextNumber;
+    //                break;
+    //            case '-':
+    //                result -= nextNumber;
+    //                break;
+    //            case '*':
+    //                result *= nextNumber;
+    //                break;
+    //            case '/':
+    //                result /= nextNumber;
+    //                break;
+    //        }
+    //    }
+
+    //    if (result == targetNumber)
+    //    {
+    //        Debug.Log("You win!");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Try again.");
+    //    }
+    //}
 }
