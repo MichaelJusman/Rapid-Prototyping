@@ -4,15 +4,45 @@ using UnityEngine;
 
 public class GameManager4 : GameBehaviour<GameManager4>
 {
-    // Start is called before the first frame update
-    void Start()
+    public int score;
+    public int scoreMultiplier = 1;
+
+    public int currentScore = 0;
+    public int bestScore = 0;
+    public int mouthScore = 0;
+
+    public bool isPlaying;
+    public bool isPaused;
+
+    public List<CubeNumber> cubeNumbers;
+
+    public void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.L))
+            ResetAllCubes();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddScore(int _score)
     {
-        
+        score += _score * scoreMultiplier;
+        _UI4.UpdateScore(score);
+    }
+
+    public void OnCorrectAnswer()
+    {
+        _UI4.OnCorrectAnswer();
+    }
+
+    public void OnWrongAnswer()
+    {
+        _UI4.OnWrongAnswer();
+    }
+
+    public void ResetAllCubes()
+    {
+        foreach (var cube in cubeNumbers)
+        {
+            cube.ResetCube();
+        }
     }
 }
