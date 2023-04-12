@@ -42,7 +42,7 @@ public class WaltGrab : GameBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Number") || collider.CompareTag("Symbol"))
+            if (collider.CompareTag("Number1") || collider.CompareTag("Number2") || collider.CompareTag("Symbol"))
             {
                 heldObject = collider.gameObject;
                 heldObject.GetComponent<Rigidbody>().isKinematic = true;

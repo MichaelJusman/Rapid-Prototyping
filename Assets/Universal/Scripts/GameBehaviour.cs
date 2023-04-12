@@ -26,6 +26,13 @@ public class GameBehaviour : MJ.Behaviour
     protected static PivotMovement1 _PM1 { get { return PivotMovement1.Instance; } }
     protected static FoodSpawner _FS { get { return FoodSpawner.Instance; } }
 
+    //Prototype 4
+    protected static GameManager4 _GM4 { get { return GameManager4.Instance; } }
+    protected static UIManager4 _UI4 { get { return UIManager4.Instance; } }
+    protected static MathScript __MS { get { return MathScript.Instance; } }
+
+
+
 
     public enum GameState { Title, Instruction, Playing, Pause, GameOver }
 

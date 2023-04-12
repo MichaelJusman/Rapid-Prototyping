@@ -17,8 +17,9 @@ TagManager:
   - Atmostphere
   - Seed
   - Planet
-  - Number
   - Symbol
+  - Number1
+  - Number2
   layers:
   - Default
   - TransparentFX
