@@ -2,65 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaltMove : MonoBehaviour
+public class WaltMove : GameBehaviour
 {
-    public float movementSpeed = 5f;
-    public float rotationSpeed = 3f;
-    public float grabDistance = 2f;
+    public CharacterController controller;
+    public float speed = 12f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 3f;
 
-    public Transform handTransform;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
 
-    private Rigidbody rb;
-    private GameObject heldObject;
+    Vector3 velocity;
+    bool isGrounded;
 
-    private void Start()
+    void Update()
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        //Check if player is grounded
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-    private void FixedUpdate()
-    {
-        // Movement
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = transform.forward * vertical + transform.right * horizontal;
-        movement = Vector3.ClampMagnitude(movement, 1f) * movementSpeed;
-
-        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
-
-        // Rotation
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-
-        Vector3 rotation = transform.localEulerAngles;
-        rotation.y += mouseX * rotationSpeed;
-        rotation.x -= mouseY * rotationSpeed;
-
-        transform.localEulerAngles = rotation;
-
-        // Grabbing objects
-        if (Input.GetKey(KeyCode.E))
+        if (isGrounded && velocity.y < 0)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(handTransform.position, handTransform.forward, out hit, grabDistance))
-            {
-                GameObject obj = hit.collider.gameObject;
-                if (obj.CompareTag("NumberCube") || obj.CompareTag("SymbolCylinder"))
-                {
-                    heldObject = obj;
-                    heldObject.GetComponent<Rigidbody>().isKinematic = true;
-                    heldObject.transform.SetParent(handTransform);
-                }
-            }
+            velocity.y = -2f;
         }
 
-        // Releasing objects
-        if (Input.GetKeyUp(KeyCode.E) && heldObject != null)
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        controller.Move(move * speed * Time.deltaTime);
+
+        //Jump
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            heldObject.GetComponent<Rigidbody>().isKinematic = false;
-            heldObject.transform.SetParent(null);
-            heldObject = null;
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+
+        //Gravity
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }

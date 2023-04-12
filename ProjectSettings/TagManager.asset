@@ -17,6 +17,8 @@ TagManager:
   - Atmostphere
   - Seed
   - Planet
+  - Number
+  - Symbol
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - DeathBall
   - Seed
   - Planet
-  - 
+  - Ground
   - 
   - 
   - 
