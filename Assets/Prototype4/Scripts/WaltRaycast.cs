@@ -18,11 +18,11 @@ public class WaltRaycast : GameBehaviour
     private void Update()
     {
         // Toggle grabbing on/off
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             isGrabbing = true;
         }
-        else if (Input.GetKeyUp(KeyCode.E))
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             isGrabbing = false;
             if (isHoldingObject)
