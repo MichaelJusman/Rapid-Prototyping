@@ -9,6 +9,7 @@ public class WaltRaycast : GameBehaviour
     public float interactionDistance = 2f;
     public LayerMask interactableLayer;
     public GameObject raycastVisualizer;
+    public GameObject wandPoint;
 
     private GameObject heldObject;
     private bool isHoldingObject = false;
@@ -41,7 +42,8 @@ public class WaltRaycast : GameBehaviour
             if (isHoldingObject)
             {
                 // Move held object towards player hand
-                Vector3 targetPosition = transform.position + transform.forward * 0.5f;
+                Vector3 targetPosition = wandPoint.transform.position;
+                //Vector3 targetPosition = transform.position + transform.forward * 0.5f;
                 heldObject.transform.position = Vector3.Lerp(heldObject.transform.position, targetPosition, Time.deltaTime * grabSpeed);
             }
             else
