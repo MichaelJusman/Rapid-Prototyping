@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaltRaycast : GameBehaviour
 {
@@ -8,7 +9,6 @@ public class WaltRaycast : GameBehaviour
     public float grabSpeed = 5f;
     public float interactionDistance = 2f;
     public LayerMask interactableLayer;
-    public GameObject raycastVisualizer;
     public GameObject wandPoint;
 
     private GameObject heldObject;
@@ -29,12 +29,6 @@ public class WaltRaycast : GameBehaviour
             {
                 ReleaseObject();
             }
-        }
-
-        // Visualize raycast
-        if (raycastVisualizer != null)
-        {
-            raycastVisualizer.SetActive(isGrabbing);
         }
 
         if (isGrabbing)
@@ -66,6 +60,34 @@ public class WaltRaycast : GameBehaviour
             // Release held object if E is not being held
             ReleaseObject();
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance, interactableLayer))
+            {
+                if (hit.collider.CompareTag("Deathball"))
+                {
+                    Button button = hit.collider.GetComponent<Button>();
+                    if (button != null)
+                    {
+                        // Call the onClick function on the TMP button
+                        button.onClick.Invoke();
+                    }
+                }
+            }
+
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //if (Physics.Raycast(ray, out hit))
+            //{
+            //    Button button = hit.collider.GetComponent<Button>();
+            //    if (button != null)
+            //    {
+            //        // Call the onClick function on the TMP button
+            //        button.onClick.Invoke();
+            //    }
+            //}
+        }
     }
 
     private void ReleaseObject()
@@ -73,6 +95,11 @@ public class WaltRaycast : GameBehaviour
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         isHoldingObject = false;
         heldObject = null;
+    }
+
+    private void HighlightObject()
+    {
+
     }
 
     private void OnDrawGizmosSelected()
