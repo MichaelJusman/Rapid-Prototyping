@@ -28,10 +28,10 @@ public class MathScript : GameBehaviour<MathScript>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-            NewTargetNumber();
-        if (Input.GetKeyDown(KeyCode.Space))
-            Calculate();
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //    NewTargetNumber();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    Calculate();
 
         if(targetNumber == resultNumber && hasBrewed)
         {

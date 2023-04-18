@@ -13,26 +13,29 @@ public class WaltGrab : GameBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (_GSM.gameState == GameState.Playing)
         {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (isHoldingObject)
+                {
+                    ReleaseObject();
+                }
+                else
+                {
+                    GrabObject();
+                }
+            }
+
             if (isHoldingObject)
             {
-                ReleaseObject();
-            }
-            else
-            {
-                GrabObject();
-            }
-        }
+                // Move held object to hand position
+                heldObject.transform.position = handTransform.position;
 
-        if (isHoldingObject)
-        {
-            // Move held object to hand position
-            heldObject.transform.position = handTransform.position;
-
-            // Apply force to held object in direction of hand
-            Vector3 grabDirection = (handTransform.position - heldObject.transform.position).normalized;
-            heldObject.GetComponent<Rigidbody>().AddForce(grabDirection * grabForce, ForceMode.Acceleration);
+                // Apply force to held object in direction of hand
+                Vector3 grabDirection = (handTransform.position - heldObject.transform.position).normalized;
+                heldObject.GetComponent<Rigidbody>().AddForce(grabDirection * grabForce, ForceMode.Acceleration);
+            }
         }
     }
 

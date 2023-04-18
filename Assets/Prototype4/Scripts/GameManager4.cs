@@ -27,13 +27,40 @@ public class GameManager4 : GameBehaviour<GameManager4>
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-            ResetAllCubes();
-
-        if (score <= 0)
+        if (_GSM.gameState == GameState.Playing)
         {
+            if (Input.GetKeyDown(KeyCode.L))
+                ResetAllCubes();
 
+            if (score <= 0)
+            {
+
+            }
         }
+
+        if (_GSM.gameState == GameState.Playing)
+        {
+            isPlaying = true;
+            isPaused = false;
+        }
+
+
+        if (_GSM.gameState == GameState.Pause)
+        {
+            isPlaying = false;
+            isPaused = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isPlaying)
+        {
+            OnPaused();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            OnResume();
+        }
+
     }
 
     public void AddScore(int _score)
@@ -92,5 +119,19 @@ public class GameManager4 : GameBehaviour<GameManager4>
     public void OnGameEnd()
     {
 
+    }
+
+    public void OnPaused()
+    {
+        _GSM.ChangeGameState(GameState.Pause);
+        Time.timeScale = 0;
+        //_UI3.OnPause();
+    }
+
+    public void OnResume()
+    {
+        _GSM.ChangeGameState(GameState.Playing);
+        Time.timeScale = 1;
+        //_UI3.OnResume();
     }
 }
