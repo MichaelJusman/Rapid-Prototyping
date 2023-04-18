@@ -45,7 +45,7 @@ public class GameManager4 : GameBehaviour<GameManager4>
     public void AddMoney(int _money)
     {
         money += _money;
-        _UI4.UpdateScore(score);
+        _UI4.UpdateMoney(money);
     }
 
     public void OnCorrectAnswer()
@@ -85,7 +85,7 @@ public class GameManager4 : GameBehaviour<GameManager4>
 
     public void IncreaseCost()
     {
-        materialCost += materialCostIncrease;
+        materialCost++;
         _UI4.UpdateCost(materialCost);
     }
 
