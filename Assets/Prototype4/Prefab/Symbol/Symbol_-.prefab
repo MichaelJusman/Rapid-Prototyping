@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3674305349801389503}
   - component: {fileID: -8791904160399079434}
   - component: {fileID: 7551751943457502335}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Symbol_-
   m_TagString: Symbol
   m_Icon: {fileID: 0}
@@ -128,3 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mathSymbol: 45
+  startPos: {x: 0, y: 0, z: 0}

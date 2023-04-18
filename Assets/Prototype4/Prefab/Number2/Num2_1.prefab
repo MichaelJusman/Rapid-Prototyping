@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2028715322836626170}
   - component: {fileID: 2028715322836626171}
   - component: {fileID: -3061762396349448191}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Num2_1
   m_TagString: Number2
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 1
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &-3061762396349448191
 Rigidbody:
   m_ObjectHideFlags: 0

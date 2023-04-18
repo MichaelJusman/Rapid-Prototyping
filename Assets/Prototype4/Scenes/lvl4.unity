@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37794551}
   - component: {fileID: 37794552}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WandPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,13 +424,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37794550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3125, y: -0.25, z: 1.3125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.19500795, y: -0.18760084, z: 0.015341641, w: 0.9625708}
+  m_LocalPosition: {x: -0.0039056127, y: -0.016229905, z: 0.47424176}
+  m_LocalScale: {x: 8.298047, y: 8.236609, z: 2.4512277}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 525333312}
-  m_RootOrder: 2
+  m_Father: {fileID: 810724795}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &37794552
 MonoBehaviour:
@@ -444,9 +444,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f465546727e71ce41ad29317734deb6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabDistance: 2
+  grabDistance: 50
   grabSpeed: 5
   interactionDistance: 2
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  raycastVisualizer: {fileID: 0}
 --- !u!1001 &48251440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -915,7 +919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &228110732
 Transform:
   m_ObjectHideFlags: 0
@@ -2749,7 +2753,6 @@ Transform:
   m_Children:
   - {fileID: 810724795}
   - {fileID: 1717799144}
-  - {fileID: 37794551}
   m_Father: {fileID: 681530617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4478,9 +4481,10 @@ Transform:
   m_GameObject: {fileID: 810724794}
   m_LocalRotation: {x: -0.19500795, y: 0.18760084, z: -0.015341641, w: 0.9625708}
   m_LocalPosition: {x: -0.40625, y: -0.34375, z: 1.09375}
-  m_LocalScale: {x: 0.055255365, y: 0.05525536, z: 0.53936756}
+  m_LocalScale: {x: 0.055255365, y: 0.055255353, z: 0.53936756}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 37794551}
   m_Father: {fileID: 525333312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -21.695, y: 23.274, z: -6.346}

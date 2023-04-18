@@ -4,54 +4,65 @@ using UnityEngine;
 
 public class WaltRaycast : GameBehaviour
 {
-    public float grabDistance = 2f;
+    public float grabDistance = 10f;
     public float grabSpeed = 5f;
     public float interactionDistance = 2f;
+    public LayerMask interactableLayer;
+    public GameObject raycastVisualizer;
 
     private GameObject heldObject;
     private bool isHoldingObject = false;
+    private bool isGrabbing = false;
 
     private void Update()
     {
+        // Toggle grabbing on/off
         if (Input.GetKeyDown(KeyCode.E))
         {
+            isGrabbing = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            isGrabbing = false;
             if (isHoldingObject)
             {
                 ReleaseObject();
             }
+        }
+
+        // Visualize raycast
+        if (raycastVisualizer != null)
+        {
+            raycastVisualizer.SetActive(isGrabbing);
+        }
+
+        if (isGrabbing)
+        {
+            if (isHoldingObject)
+            {
+                // Move held object towards player hand
+                Vector3 targetPosition = transform.position + transform.forward * 0.5f;
+                heldObject.transform.position = Vector3.Lerp(heldObject.transform.position, targetPosition, Time.deltaTime * grabSpeed);
+            }
             else
             {
-                GameObject interactableObject = GetInteractableObject();
-                if (interactableObject != null)
+                // Attempt to grab an object
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, grabDistance, interactableLayer))
                 {
-                    InteractWithObject(interactableObject);
-                }
-                else
-                {
-                    GrabObject();
+                    if (hit.collider.CompareTag("Number1") || hit.collider.CompareTag("Number2") || hit.collider.CompareTag("Symbol"))
+                    {
+                        heldObject = hit.collider.gameObject;
+                        heldObject.GetComponent<Rigidbody>().isKinematic = true;
+                        isHoldingObject = true;
+                    }
                 }
             }
         }
-
-        if (isHoldingObject)
+        else if (isHoldingObject)
         {
-            // Move held object towards player hand
-            Vector3 targetPosition = transform.position + transform.forward * 0.5f;
-            heldObject.transform.position = Vector3.Lerp(heldObject.transform.position, targetPosition, Time.deltaTime * grabSpeed);
-        }
-    }
-
-    private void GrabObject()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, grabDistance))
-        {
-            if (hit.collider.CompareTag("Number1") || hit.collider.CompareTag("Number2") || hit.collider.CompareTag("Symbol"))
-            {
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true;
-                isHoldingObject = true;
-            }
+            // Release held object if E is not being held
+            ReleaseObject();
         }
     }
 
@@ -62,18 +73,12 @@ public class WaltRaycast : GameBehaviour
         heldObject = null;
     }
 
-    private GameObject GetInteractableObject()
+    private void OnDrawGizmosSelected()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
-        {
-            return hit.collider.gameObject;
-        }
-        return null;
+        // Draw grab raycast in editor
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * grabDistance);
     }
 
-    private void InteractWithObject(GameObject interactableObject)
-    {
-        // Add code to interact with object
-    }
+    //(hit.collider.CompareTag("Number1") || hit.collider.CompareTag("Number2") || hit.collider.CompareTag("Symbol"))
 }
