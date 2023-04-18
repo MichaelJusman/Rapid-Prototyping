@@ -15,6 +15,7 @@ public class GameManager4 : GameBehaviour<GameManager4>
     public bool isPaused;
 
     public List<CubeNumber> cubeNumbers;
+    public List<CubeSymbols> cubeSymbols;
 
     public void Update()
     {
@@ -41,6 +42,11 @@ public class GameManager4 : GameBehaviour<GameManager4>
     public void ResetAllCubes()
     {
         foreach (var cube in cubeNumbers)
+        {
+            cube.ResetCube();
+        }
+
+        foreach (var cube in cubeSymbols)
         {
             cube.ResetCube();
         }

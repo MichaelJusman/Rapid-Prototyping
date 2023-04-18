@@ -23,8 +23,14 @@ public class CubeSymbols : GameBehaviour
 
     public void DisableCube()
     {
-        transform.position = startPos;
+
         gameObject.SetActive(false);
+    }
+
+    public void ResetCube()
+    {
+        transform.position = startPos;
+        gameObject.SetActive(true);
     }
 
     public CubeSymbols(char symbol)

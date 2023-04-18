@@ -76,6 +76,7 @@ public class MathScript : GameBehaviour<MathScript>
         {
             mathSymbol = other.GetComponent<CubeSymbols>().mathSymbol;
             _UI4.UpdateSymbolText(mathSymbol);
+            other.GetComponent<CubeSymbols>().DisableCube();
         }
 
     }
