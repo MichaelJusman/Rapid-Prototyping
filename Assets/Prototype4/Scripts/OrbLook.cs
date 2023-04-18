@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OrbLook : GameBehaviour
 {
-    public Rigidbody rb;
     public Transform player;
     
     // Start is called before the first frame update

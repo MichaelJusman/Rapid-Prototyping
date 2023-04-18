@@ -6,10 +6,10 @@ public class GameManager4 : GameBehaviour<GameManager4>
 {
     public int score;
     public int scoreMultiplier = 1;
+    public int money = 10;
 
-    public int currentScore = 0;
-    public int bestScore = 0;
-    public int mouthScore = 0;
+    public int materialCost = 5;
+    public int materialCostIncrease = 2;
 
     public bool isPlaying;
     public bool isPaused;
@@ -17,15 +17,34 @@ public class GameManager4 : GameBehaviour<GameManager4>
     public List<CubeNumber> cubeNumbers;
     public List<CubeSymbols> cubeSymbols;
 
+    public void Start()
+    {
+        materialCost = 5;
+        _UI4.UpdateMoney(money);
+        _UI4.UpdateScore(score);
+        _UI4.UpdateCost(materialCost);
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
             ResetAllCubes();
+
+        if (score <= 0)
+        {
+
+        }
     }
 
     public void AddScore(int _score)
     {
         score += _score * scoreMultiplier;
+        _UI4.UpdateScore(score);
+    }
+
+    public void AddMoney(int _money)
+    {
+        money += _money;
         _UI4.UpdateScore(score);
     }
 
@@ -41,14 +60,37 @@ public class GameManager4 : GameBehaviour<GameManager4>
 
     public void ResetAllCubes()
     {
-        foreach (var cube in cubeNumbers)
+        if (money >= materialCost)
         {
-            cube.ResetCube();
-        }
+            money -= materialCost;
+            _UI4.UpdateMoney(money);
 
-        foreach (var cube in cubeSymbols)
-        {
-            cube.ResetCube();
+            foreach (var cube in cubeNumbers)
+            {
+                cube.ResetCube();
+            }
+
+            foreach (var cube in cubeSymbols)
+            {
+                cube.ResetCube();
+            }
+
+            IncreaseCost();
+
+            
+
+            Debug.Log("money: " + money.ToString() + ", cost: " + materialCost.ToString());
         }
+    }
+
+    public void IncreaseCost()
+    {
+        materialCost += materialCostIncrease;
+        _UI4.UpdateCost(materialCost);
+    }
+
+    public void OnGameEnd()
+    {
+
     }
 }

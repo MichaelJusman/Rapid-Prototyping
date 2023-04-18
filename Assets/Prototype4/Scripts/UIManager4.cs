@@ -9,9 +9,13 @@ public class UIManager4 : GameBehaviour<UIManager4>
     public TMP_Text number1Text;
     public TMP_Text number2Text;
     public TMP_Text symbolText;
-    public TMP_Text scoreText;
     public TMP_Text answerText;
     
+    public TMP_Text scoreText;
+    public TMP_Text moneyText;
+    public TMP_Text costText;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +32,17 @@ public class UIManager4 : GameBehaviour<UIManager4>
     {
         scoreText.text = "Score: " + _score;
     }
+
+    public void UpdateMoney(int _money)
+    {
+        moneyText.text = "$: " + _money;
+    }
+
+    public void UpdateCost(int _cost)
+    {
+        costText.text = "This will cost $" + _cost;
+    }
+
 
     public void UpdateTargetText(int _target)
     {
