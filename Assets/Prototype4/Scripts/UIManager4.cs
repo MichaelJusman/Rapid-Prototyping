@@ -15,11 +15,17 @@ public class UIManager4 : GameBehaviour<UIManager4>
     public TMP_Text moneyText;
     public TMP_Text costText;
 
+    public GameObject ingameUIPanel;
+    public GameObject pausePanel;
+    public GameObject gameOverPanel;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        ingameUIPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -88,6 +94,22 @@ public class UIManager4 : GameBehaviour<UIManager4>
         targetText.color = Color.white;
         answerText.color = Color.white;
         answerText.text = "";
+    }
+
+    public void OnGameEnd()
+    {
+        gameOverPanel.SetActive(true);
+        ingameUIPanel.SetActive(false);
+    }
+
+    public void OnPause()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void OnResume()
+    {
+        pausePanel.SetActive(false);
     }
 
 }

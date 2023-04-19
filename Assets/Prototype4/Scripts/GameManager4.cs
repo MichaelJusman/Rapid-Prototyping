@@ -23,6 +23,7 @@ public class GameManager4 : GameBehaviour<GameManager4>
         _UI4.UpdateMoney(money);
         _UI4.UpdateScore(score);
         _UI4.UpdateCost(materialCost);
+        _GSM.ChangeGameState(GameState.Playing);
     }
 
     public void Update()
@@ -118,20 +119,21 @@ public class GameManager4 : GameBehaviour<GameManager4>
 
     public void OnGameEnd()
     {
-
+        _GSM.ChangeGameState(GameState.GameOver);
+        _UI4.OnGameEnd();
     }
 
     public void OnPaused()
     {
         _GSM.ChangeGameState(GameState.Pause);
         Time.timeScale = 0;
-        //_UI3.OnPause();
+        _UI4.OnPause();
     }
 
     public void OnResume()
     {
         _GSM.ChangeGameState(GameState.Playing);
         Time.timeScale = 1;
-        //_UI3.OnResume();
+        _UI4.OnResume();
     }
 }
