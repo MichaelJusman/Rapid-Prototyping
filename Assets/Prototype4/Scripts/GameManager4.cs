@@ -33,10 +33,10 @@ public class GameManager4 : GameBehaviour<GameManager4>
             if (Input.GetKeyDown(KeyCode.L))
                 ResetAllCubes();
 
-            if (score <= 0)
-            {
-
-            }
+            //if (score <= 0)
+            //{
+            //    OnGameEnd();
+            //}
         }
 
         if (_GSM.gameState == GameState.Playing)
@@ -60,6 +60,18 @@ public class GameManager4 : GameBehaviour<GameManager4>
         if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
         {
             OnResume();
+        }
+
+        if (money < materialCost)
+        {
+            _UI4.UpdateEndGame();
+            _UI4.UpdateButtonText();
+        }
+
+        if (money > materialCost)
+        {
+            _UI4.UpdateCost(materialCost);
+            _UI4.ResetButtonText();
         }
 
     }
@@ -109,6 +121,10 @@ public class GameManager4 : GameBehaviour<GameManager4>
 
             Debug.Log("money: " + money.ToString() + ", cost: " + materialCost.ToString());
         }
+        else
+        {
+            OnGameEnd();
+        }
     }
 
     public void IncreaseCost()
@@ -121,6 +137,7 @@ public class GameManager4 : GameBehaviour<GameManager4>
     {
         _GSM.ChangeGameState(GameState.GameOver);
         _UI4.OnGameEnd();
+        _UI4.UpdateFinalScore(score);
     }
 
     public void OnPaused()

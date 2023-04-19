@@ -12,8 +12,10 @@ public class UIManager4 : GameBehaviour<UIManager4>
     public TMP_Text answerText;
     
     public TMP_Text scoreText;
+    public TMP_Text finalScoreText;
     public TMP_Text moneyText;
     public TMP_Text costText;
+    public TMP_Text buttonText;
 
     public GameObject ingameUIPanel;
     public GameObject pausePanel;
@@ -39,6 +41,11 @@ public class UIManager4 : GameBehaviour<UIManager4>
         scoreText.text = "Score: " + _score;
     }
 
+    public void UpdateFinalScore(int _score)
+    {
+        finalScoreText.text = "Your Score: " + _score;
+    }
+
     public void UpdateMoney(int _money)
     {
         moneyText.text = "$: " + _money;
@@ -47,6 +54,21 @@ public class UIManager4 : GameBehaviour<UIManager4>
     public void UpdateCost(int _cost)
     {
         costText.text = "This will cost $" + _cost;
+    }
+
+    public void UpdateEndGame()
+    {
+        costText.text = "You cant afford this";
+    }
+
+    public void UpdateButtonText()
+    {
+        buttonText.text = "End Game";
+    }
+
+    public void ResetButtonText()
+    {
+        buttonText.text = "Yes";
     }
 
 
@@ -100,6 +122,8 @@ public class UIManager4 : GameBehaviour<UIManager4>
     {
         gameOverPanel.SetActive(true);
         ingameUIPanel.SetActive(false);
+
+
     }
 
     public void OnPause()

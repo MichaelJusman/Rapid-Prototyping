@@ -29,7 +29,7 @@ public class GameBehaviour : MJ.Behaviour
     //Prototype 4
     protected static GameManager4 _GM4 { get { return GameManager4.Instance; } }
     protected static UIManager4 _UI4 { get { return UIManager4.Instance; } }
-    protected static MathScript __MS { get { return MathScript.Instance; } }
+    protected static MathScript _MS { get { return MathScript.Instance; } }
 
 
 

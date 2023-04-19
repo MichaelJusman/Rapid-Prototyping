@@ -77,6 +77,11 @@ public class WaltRaycast : GameBehaviour
                             button.onClick.Invoke();
                         }
                     }
+
+                    //if (hit.collider.CompareTag("Planet"))
+                    //{
+                    //    hit.collider.GetComponent<Animator>().Play("PressRam");
+                    //}
                 }
 
                 //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
