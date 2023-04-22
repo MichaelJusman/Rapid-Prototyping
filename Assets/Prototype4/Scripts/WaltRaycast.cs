@@ -15,6 +15,15 @@ public class WaltRaycast : GameBehaviour
     private bool isHoldingObject = false;
     private bool isGrabbing = false;
 
+    public GameObject particleEffect;
+    public GameObject lightSource;
+
+    public void Start()
+    {
+        lightSource.SetActive(false);
+    }
+
+
     private void Update()
     {
         if (_GSM.gameState == GameState.Playing)
@@ -23,13 +32,18 @@ public class WaltRaycast : GameBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 isGrabbing = true;
+                particleEffect.GetComponent<ParticleSystem>().Play();
+                lightSource.gameObject.SetActive(true);
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 isGrabbing = false;
+                particleEffect.GetComponent<ParticleSystem>().Stop();
+                lightSource.gameObject.SetActive(false);
                 if (isHoldingObject)
                 {
                     ReleaseObject();
+                    
                 }
             }
 

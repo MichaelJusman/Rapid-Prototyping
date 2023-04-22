@@ -71,7 +71,7 @@ public class GameManager2 : GameBehaviour<GameManager2>
         {
             bestScore = currentScore;
             PlayerPrefs.SetFloat("BestTime", bestScore);
-            _UI2.UpdateBestScore(bestScore);
+            //_UI2.UpdateBestScore(bestScore);
 
 
             //bestTime = currentTime;

@@ -36,7 +36,7 @@ public class MathScript : GameBehaviour<MathScript>
         if(targetNumber == resultNumber && hasBrewed)
         {
             _GM4.AddScore(10);
-            _GM4.AddMoney(10);
+            _GM4.AddMoney(1);
             hasBrewed = false;
             _GM4.OnCorrectAnswer();
             OnReset();
@@ -46,6 +46,7 @@ public class MathScript : GameBehaviour<MathScript>
         if (targetNumber != resultNumber && hasBrewed)
         {
             _GM4.OnWrongAnswer();
+            _GM4.DecreaseScore(2);
             hasBrewed = false;
         }
 

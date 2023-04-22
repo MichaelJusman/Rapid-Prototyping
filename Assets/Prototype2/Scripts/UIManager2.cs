@@ -14,7 +14,6 @@ public class UIManager2 : GameBehaviour<UIManager2>
 
     public TMP_Text scoreText;
     public TMP_Text currentScoreText;
-    public TMP_Text bestScoreText;
 
     public GameObject gameOverPanel;
     public GameObject pausePanel;
@@ -51,10 +50,10 @@ public class UIManager2 : GameBehaviour<UIManager2>
         currentScoreText.text = "Your Score: " + _score;
     }
 
-    public void UpdateBestScore(int _score)
-    {
-        bestScoreText.text = "Best Score: " + _score;
-    }
+    //public void UpdateBestScore(int _score)
+    //{
+    //    bestScoreText.text = "Best Score: " + _score;
+    //}
 
     public void OnMapExit()
     {

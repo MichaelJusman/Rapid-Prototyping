@@ -82,6 +82,20 @@ public class GameManager4 : GameBehaviour<GameManager4>
         _UI4.UpdateScore(score);
     }
 
+    public void DecreaseScore(int _score)
+    {
+        if (score >= 0)
+        {
+            score -= _score * scoreMultiplier;
+            _UI3.UpdateScore(score);
+        }
+        
+        if (score < 0)
+        {
+            ExecuteAfterSeconds(2, () => OnGameEnd());
+        }
+    }
+
     public void AddMoney(int _money)
     {
         money += _money;

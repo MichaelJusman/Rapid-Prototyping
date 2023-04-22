@@ -374,7 +374,7 @@ MonoBehaviour:
   player: {fileID: 0}
   seed: {fileID: 0}
   planetCenter: {fileID: 28782018828226054}
-  pullSpeed: 30
+  pullSpeed: 10
   seedPullSpeed: 50
 --- !u!114 &2047165420060516079
 MonoBehaviour:
