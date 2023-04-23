@@ -23,7 +23,7 @@ public class GameManager3 : GameBehaviour<GameManager3>
     // Update is called once per frame
     void Update()
     {
-        if (_GSM.gameState == GameState.Playing)
+        if (_GSM.gameState == GameState.Playing || _GSM.gameState == GameState.Instruction)
         {
             isPlaying = true;
             isPaused = false;
@@ -122,5 +122,10 @@ public class GameManager3 : GameBehaviour<GameManager3>
         _GSM.ChangeGameState(GameState.GameOver);
         _UI3.OnGameEnd();
         _UI3.UpdateFinalScoreText(score);
+    }
+
+    public void RestartPlay()
+    {
+        _GSM.ChangeGameState(GameState.GameOver);
     }
 }

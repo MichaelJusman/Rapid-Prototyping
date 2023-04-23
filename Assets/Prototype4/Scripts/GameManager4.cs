@@ -167,4 +167,9 @@ public class GameManager4 : GameBehaviour<GameManager4>
         Time.timeScale = 1;
         _UI4.OnResume();
     }
+
+    public void RestartPlay()
+    {
+        _GSM.ChangeGameState(GameState.GameOver);
+    }
 }
