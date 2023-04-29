@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static GameBehaviour;
 
-public class SpaceBoi : MonoBehaviour
+public class SpaceBoi : GameBehaviour
 {
     public CharacterController controller;
     public float speed = 12f;
