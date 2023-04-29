@@ -46,7 +46,7 @@ public class AstroController : MonoBehaviour
         {
             moveDirection.y = 0f;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
@@ -56,3 +56,4 @@ public class AstroController : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
     }
 }
+
