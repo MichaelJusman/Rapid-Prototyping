@@ -17,8 +17,10 @@ public class Player : MonoBehaviour
 			anim = gameObject.GetComponentInChildren<Animator>();
 		}
 
-		void Update (){
-			if (Input.GetKey ("w")) {
+		void Update ()
+	{
+			if (Input.GetKey ("w")) 
+		{
 				anim.SetInteger ("AnimationPar", 1);
 			}  else {
 				anim.SetInteger ("AnimationPar", 0);
