@@ -7,6 +7,7 @@ using static GameBehaviour;
 public class SpaceBoi : GameBehaviour
 {
     public CharacterController controller;
+    public Animator anim;
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
@@ -22,6 +23,7 @@ public class SpaceBoi : GameBehaviour
     public void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -47,6 +49,15 @@ public class SpaceBoi : GameBehaviour
             transform.rotation = Quaternion.LookRotation(move);
         }
 
+        if (move.magnitude > 0 && isGrounded)
+        {
+            anim.SetTrigger("Run");
+        }
+        else
+        {
+            anim.SetTrigger("Idle");
+        }
+
         //Jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -56,5 +67,11 @@ public class SpaceBoi : GameBehaviour
         //Gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if(!isGrounded)
+        {
+            anim.SetTrigger("Jump");
+            anim.ResetTrigger("Idle");
+        }
     }
 }
