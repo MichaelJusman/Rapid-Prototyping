@@ -37,22 +37,11 @@ public class SpaceBoi : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        //Vector3 move = transform.right * x + transform.forward * z;
         Vector3 move = new Vector3(x, 0f, z);
-        Debug.Log(move);
-
-
-        //// Calculate the new rotation for the character based on the move direction
-        //Quaternion newRotation = Quaternion.LookRotation(move);
-
-        //// Smoothly rotate the character towards the new rotation
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
-
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(move), turnSpeed);
-
 
         controller.Move(move * speed * Time.deltaTime);
 
+        //turn the character on the direction its moving
         if (move.magnitude > 0)
         {
             transform.rotation = Quaternion.LookRotation(move);
