@@ -16,7 +16,7 @@ public class FiringPoint : MonoBehaviour
             FireWeapon();
         }
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire2"))
         {
             FireSecondary();
         }
@@ -33,7 +33,7 @@ public class FiringPoint : MonoBehaviour
 
     void FireSecondary()
     {
-        GameObject projectileInstance = Instantiate(weaponType[0], firingPoint.position, firingPoint.rotation);
+        GameObject projectileInstance = Instantiate(weaponType[1], firingPoint.position, firingPoint.rotation);
 
         projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
 
