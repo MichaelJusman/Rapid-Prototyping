@@ -1,26 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class EnemyTower : MonoBehaviour
+public class EnemyTower : GameBehaviour
 {
+    [Header("Health")]
     public int health = 100;
     public int currentHealth;
+    public bool isDefeated;
 
+    [Header("Body")]
     public GameObject turretHead;
     public GameObject redGlow;
     public GameObject greenGlow;
 
+    [Header("UI")]
+    public TMP_Text heathText;
+    public Slider healthBarSlider;
+
     public void Start()
     {
         currentHealth = health;
+        turretHead.SetActive(true);
+        redGlow.SetActive(true);
+        greenGlow.SetActive(false);
+        UpdateHealthBar(currentHealth);
+        UpdateHealthText(currentHealth);
+        isDefeated = false;
     }
 
     public void Update()
     {
-        if(health <= 0)
+        if(currentHealth <= 0 && !isDefeated)
         {
             Defeat();
+            isDefeated=true;
         }
     }
 
@@ -29,11 +45,18 @@ public class EnemyTower : MonoBehaviour
         if(collision.collider.CompareTag("Number1"))
         {
             TakeDamage(20);
+            UpdateHealthBar(currentHealth);
+            UpdateHealthText(currentHealth);
+            Destroy(collision.gameObject);
+            
         }
 
-        if (collision.collider.CompareTag("Number1"))
+        if (collision.collider.CompareTag("Number2"))
         {
             TakeDamage(2);
+            UpdateHealthBar(currentHealth);
+            UpdateHealthText(currentHealth);
+            Destroy(collision.gameObject);
         }
     }
 
@@ -44,6 +67,19 @@ public class EnemyTower : MonoBehaviour
 
     public void Defeat()
     {
+        turretHead.SetActive(false);
+        redGlow.SetActive(false);
+        greenGlow.SetActive(true);
+        Debug.Log("I am defeated");
+    }
 
+    public void UpdateHealthBar(int _health)
+    {
+        healthBarSlider.value = _health;
+    }
+
+    public void UpdateHealthText(int _health)
+    {
+        heathText.text = _health.ToString();
     }
 }

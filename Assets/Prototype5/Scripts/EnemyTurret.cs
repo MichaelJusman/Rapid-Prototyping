@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTurret : MonoBehaviour
+public class EnemyTurret : GameBehaviour
 {
     [Header("Aim & Detection")]
     public Transform target;
