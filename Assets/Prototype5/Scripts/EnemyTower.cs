@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class EnemyTower : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int health = 100;
+    public int currentHealth;
+
+    public GameObject turretHead;
+    public GameObject redGlow;
+    public GameObject greenGlow;
+
+    public void Start()
     {
-        
+        currentHealth = health;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if(health <= 0)
+        {
+            Defeat();
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Number1"))
+        {
+            TakeDamage(20);
+        }
+
+        if (collision.collider.CompareTag("Number1"))
+        {
+            TakeDamage(2);
+        }
+    }
+
+    public void TakeDamage(int _damage)
+    {
+        currentHealth -= _damage;
+    }
+
+    public void Defeat()
+    {
+
     }
 }
