@@ -6,6 +6,7 @@ using static GameBehaviour;
 
 public class SpaceBoi : GameBehaviour
 {
+    [Header("Movement")]
     public CharacterController controller;
     public Animator anim;
     public float speed = 12f;
@@ -13,17 +14,23 @@ public class SpaceBoi : GameBehaviour
     public float jumpHeight = 3f;
     public float turnSpeed = 0.15f;
 
+    [Header("GroundCheck")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-
     Vector3 velocity;
     bool isGrounded;
+
+    [Header("Heath")]
+    public int health = 100;
+    public int currentHealth;
+
 
     public void Start()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        currentHealth = health;
     }
 
     void Update()
@@ -49,6 +56,7 @@ public class SpaceBoi : GameBehaviour
             transform.rotation = Quaternion.LookRotation(move);
         }
 
+        //Play the running animation while moving
         if (move.magnitude > 0 && isGrounded)
         {
             anim.SetTrigger("Run");
@@ -68,10 +76,29 @@ public class SpaceBoi : GameBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        //Play the jumping animation while in the air
         if(!isGrounded)
         {
             anim.SetTrigger("Jump");
             anim.ResetTrigger("Idle");
+        }
+    }
+
+    public void TakeDamage(int _damage)
+    {
+        currentHealth -= _damage;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Damager"))
+        {
+            TakeDamage(10);
+            Destroy(collision.gameObject);
+        }
+        if (collision.collider.CompareTag("Deathplane"))
+        {
+
         }
     }
 }
