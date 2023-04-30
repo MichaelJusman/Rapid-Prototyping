@@ -33,6 +33,9 @@ public class SpaceBoi : GameBehaviour
         anim = GetComponent<Animator>();
         currentHealth = health;
         isDying = false;
+        _UI5.SetMaxValueSlider(currentHealth);
+        _UI5.UpdateHealthBar(currentHealth);
+        _UI5.UpdateHealthText(currentHealth);
     }
 
     void Update()
@@ -102,6 +105,8 @@ public class SpaceBoi : GameBehaviour
         if(collision.collider.CompareTag("Damager"))
         {
             TakeDamage(10);
+            _UI5.UpdateHealthBar(currentHealth);
+            _UI5.UpdateHealthText(currentHealth);
             Destroy(collision.gameObject);
         }
 

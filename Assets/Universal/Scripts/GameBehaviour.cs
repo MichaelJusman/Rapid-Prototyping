@@ -31,6 +31,9 @@ public class GameBehaviour : MJ.Behaviour
     protected static UIManager4 _UI4 { get { return UIManager4.Instance; } }
     protected static MathScript _MS { get { return MathScript.Instance; } }
 
+    //Prototype 5
+    protected static GameManager5 _GM5 { get { return GameManager5.Instance; } }
+    protected static UIManager5 _UI5 { get { return UIManager5.Instance; } }
 
 
 
