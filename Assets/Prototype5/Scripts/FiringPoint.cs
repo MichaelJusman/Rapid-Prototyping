@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class FiringPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject[] weaponType;
+    public Transform firingPoint;
+    public float projectileSpeed = 1000;
+
+    public void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            FireWeapon();
+        }
+
+        if (Input.GetButton("Fire1"))
+        {
+            FireSecondary();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void FireWeapon()
     {
-        
+        GameObject projectileInstance = Instantiate(weaponType[0], firingPoint.position, firingPoint.rotation);
+
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
+
+        Destroy(projectileInstance, 2);
+    }
+
+    void FireSecondary()
+    {
+        GameObject projectileInstance = Instantiate(weaponType[0], firingPoint.position, firingPoint.rotation);
+
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
+
+        Destroy(projectileInstance, 2);
     }
 }
