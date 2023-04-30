@@ -14,9 +14,9 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_Fog: 1
+  m_FogColor: {r: 0.7735849, g: 0.68114394, b: 0.5794589, a: 1}
+  m_FogMode: 2
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
@@ -2947,4 +2947,5 @@ MonoBehaviour:
   - {fileID: 1392937541074346793, guid: b8300ed8b756a8b46bfb35cfa4ec8c2e, type: 3}
   - {fileID: 8534967480811170475, guid: b194bb629acd7ca40a8fbe602a24b2ac, type: 3}
   firingPoint: {fileID: 1900972722}
-  projectileSpeed: 1000
+  cannonSpeed: 300
+  bulletSpeed: 1000

@@ -7,7 +7,8 @@ public class FiringPoint : MonoBehaviour
 
     public GameObject[] weaponType;
     public Transform firingPoint;
-    public float projectileSpeed = 1000;
+    public float cannonSpeed = 300;
+    public float bulletSpeed = 1000;
 
     public void Update()
     {
@@ -26,7 +27,7 @@ public class FiringPoint : MonoBehaviour
     {
         GameObject projectileInstance = Instantiate(weaponType[0], firingPoint.position, firingPoint.rotation);
 
-        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * cannonSpeed);
 
         Destroy(projectileInstance, 2);
     }
@@ -35,7 +36,7 @@ public class FiringPoint : MonoBehaviour
     {
         GameObject projectileInstance = Instantiate(weaponType[1], firingPoint.position, firingPoint.rotation);
 
-        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
 
         Destroy(projectileInstance, 2);
     }
