@@ -24,6 +24,7 @@ public class SpaceBoi : GameBehaviour
     [Header("Heath")]
     public int health = 100;
     public int currentHealth;
+    public bool isDying;
 
 
     public void Start()
@@ -31,6 +32,7 @@ public class SpaceBoi : GameBehaviour
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         currentHealth = health;
+        isDying = false;
     }
 
     void Update()
@@ -82,6 +84,12 @@ public class SpaceBoi : GameBehaviour
             anim.SetTrigger("Jump");
             anim.ResetTrigger("Idle");
         }
+
+        if(currentHealth <= 0 && !isDying)
+        {
+            OnDeath();
+            isDying = true;
+        }
     }
 
     public void TakeDamage(int _damage)
@@ -96,9 +104,35 @@ public class SpaceBoi : GameBehaviour
             TakeDamage(10);
             Destroy(collision.gameObject);
         }
+
         if (collision.collider.CompareTag("Deathplane"))
         {
-
+            OnOutOfBounds();
         }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Deathplane"))
+        {
+            OnOutOfBounds();
+        }
+    }
+
+    public void OnOutOfBounds()
+    {
+        Debug.Log("im falin'");
+        ExecuteAfterSeconds(2, () => Die());
+    }
+
+    public void OnDeath()
+    {
+        anim.SetTrigger("Die");
+        ExecuteAfterFrames(20, () => Die());
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -26,6 +26,7 @@ public class EnemyTower : GameBehaviour
         turretHead.SetActive(true);
         redGlow.SetActive(true);
         greenGlow.SetActive(false);
+        SetMaxValueSlider(currentHealth);
         UpdateHealthBar(currentHealth);
         UpdateHealthText(currentHealth);
         isDefeated = false;
@@ -76,6 +77,11 @@ public class EnemyTower : GameBehaviour
     public void UpdateHealthBar(int _health)
     {
         healthBarSlider.value = _health;
+    }
+
+    public void SetMaxValueSlider(int _health)
+    {
+        healthBarSlider.maxValue = _health;
     }
 
     public void UpdateHealthText(int _health)
