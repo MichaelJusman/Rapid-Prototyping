@@ -43,11 +43,13 @@ public class UIManager5 : GameBehaviour<UIManager5>
     public void OnDeath()
     {
         diePanel.SetActive(true);
+        ExecuteAfterSeconds(2, () => _GM5.OnGameEnd());
     }
 
     public void OnOutOfBounds()
     {
         fallPanel.SetActive(true);
+        ExecuteAfterSeconds(2, () => _GM5.OnGameEnd());
     }
 
     public void UpdateHealthBar(int _health)
@@ -67,5 +69,15 @@ public class UIManager5 : GameBehaviour<UIManager5>
     public void UpdateEnemyCount(int _enemy)
     {
         enemyCountText.text = "Enemy Left: " + _enemy.ToString();
+    }
+
+    public void OnPause()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void OnResume()
+    {
+        pausePanel.SetActive(false);
     }
 }

@@ -131,12 +131,15 @@ public class SpaceBoi : GameBehaviour
     {
         Debug.Log("im falin'");
         ExecuteAfterSeconds(2, () => Die());
+        _GM5.OnOutOfBounds();
+        
     }
 
     public void OnDeath()
     {
         anim.SetTrigger("Die");
         ExecuteAfterFrames(20, () => Die());
+        _GM5.OnDeath();
     }
 
     public void Die()

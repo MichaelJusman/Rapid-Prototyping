@@ -31,6 +31,11 @@ public class SceneController : GameBehaviour<SceneController>
         SceneManager.LoadScene("lvl4");
     }
 
+    public void Level5()
+    {
+        SceneManager.LoadScene("lvl5");
+    }
+
     public void LoadTitle()
     {
         SceneManager.LoadScene("Title");
