@@ -12198,7 +12198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1899195032
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12571,7 +12571,7 @@ GameObject:
   - component: {fileID: 1957943883}
   m_Layer: 0
   m_Name: Blocker
-  m_TagString: Atmostphere
+  m_TagString: Heal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14754,6 +14754,7 @@ GameObject:
   - component: {fileID: 2436013380822209490}
   - component: {fileID: 2436013380822209491}
   - component: {fileID: 2436013380822209492}
+  - component: {fileID: 2436013380822209493}
   m_Layer: 3
   m_Name: SpaceBoi
   m_TagString: Player
@@ -14821,6 +14822,21 @@ CapsuleCollider:
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &2436013380822209493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436013380822209489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba5f3c331f12734e9b71f2b8809057e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintText: {fileID: 962827556}
+  hasSpoken: 0
+  hasStart: 0
 --- !u!1 &2436020420558996157
 GameObject:
   m_ObjectHideFlags: 0
