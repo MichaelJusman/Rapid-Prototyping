@@ -17,6 +17,7 @@ public class UIManager5 : GameBehaviour<UIManager5>
     public Slider healthBarSlider;
     public TMP_Text healthText;
     public TMP_Text enemyCountText;
+    public TMP_Text ammoCountText;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +70,11 @@ public class UIManager5 : GameBehaviour<UIManager5>
     public void UpdateEnemyCount(int _enemy)
     {
         enemyCountText.text = "Enemy Left: " + _enemy.ToString();
+    }
+
+    public void UpdateAmmoCount(float _ammo)
+    {
+        ammoCountText.text = "Primary Ammo : " + _ammo.ToString("F0");
     }
 
     public void OnPause()

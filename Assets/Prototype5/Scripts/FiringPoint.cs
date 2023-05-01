@@ -12,20 +12,33 @@ public class FiringPoint : GameBehaviour
     public float cannonSpeed = 300;
     public float cannonRate = 1f;
     public float cannonCounter;
+    public float cannonAmmo = 10;
 
     [Header("Bullet")]
     public float bulletSpeed = 1000;
     public float bulletRate = 10f;
     public float bulletCounter;
 
+    public void Start()
+    {
+        _UI5.UpdateAmmoCount(cannonAmmo);
+    }
 
     public void Update()
     {
+        if(cannonAmmo < 10)
+        {
+            cannonAmmo += Time.deltaTime;
+            _UI5.UpdateAmmoCount(cannonAmmo);
+        }
+        
         if(_GSM.gameState == GameState.Playing)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && cannonAmmo > 1)
             {
                 FireWeapon();
+                cannonAmmo --;
+                _UI5.UpdateAmmoCount(cannonAmmo);
             }
 
             if (Input.GetButton("Fire2"))
