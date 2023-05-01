@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class FiringPoint : GameBehaviour
 {
-
+    [Header("Weapon Type")]
     public GameObject[] weaponType;
     public Transform firingPoint;
+
+    [Header("Cannon")]
     public float cannonSpeed = 300;
+    public float cannonRate = 1f;
+    public float cannonCounter;
+
+    [Header("Bullet")]
     public float bulletSpeed = 1000;
+    public float bulletRate = 10f;
+    public float bulletCounter;
+
 
     public void Update()
     {
@@ -21,7 +30,14 @@ public class FiringPoint : GameBehaviour
 
             if (Input.GetButton("Fire2"))
             {
-                FireSecondary();
+                if (bulletCounter <= 0)
+                {
+                    FireSecondary();
+
+                    bulletCounter = 1f / bulletRate;
+                }
+
+                bulletCounter -= Time.deltaTime;
             }
         }
     }
@@ -41,6 +57,6 @@ public class FiringPoint : GameBehaviour
 
         projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
 
-        Destroy(projectileInstance, 2);
+        Destroy(projectileInstance, 0.5f);
     }
 }
