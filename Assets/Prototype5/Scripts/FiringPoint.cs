@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiringPoint : MonoBehaviour
+public class FiringPoint : GameBehaviour
 {
 
     public GameObject[] weaponType;
@@ -12,14 +12,17 @@ public class FiringPoint : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if(_GSM.gameState == GameState.Playing)
         {
-            FireWeapon();
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                FireWeapon();
+            }
 
-        if (Input.GetButton("Fire2"))
-        {
-            FireSecondary();
+            if (Input.GetButton("Fire2"))
+            {
+                FireSecondary();
+            }
         }
     }
 

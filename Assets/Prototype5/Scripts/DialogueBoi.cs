@@ -115,6 +115,6 @@ public class DialogueBoi : GameBehaviour
     {
         dialoguePanel.SetActive(false);
         ingameSpeechPanel.SetActive(true);
-
+        _GSM.ChangeGameState(GameState.Playing);
     }
 }

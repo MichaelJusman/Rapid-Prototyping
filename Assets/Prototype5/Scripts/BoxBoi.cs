@@ -24,26 +24,29 @@ public class BoxBoi : GameBehaviour
     // Update is called once per frame
     void Update()
     {
-        //the position of the object
-        Vector3 targetPosition = boxPoint.transform.position;
-
-        //lerp object to targeted position
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * travelSpeed);
-
-        // Cast a ray from the camera to the mouse position
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if(_GSM.gameState == GameState.Playing)
         {
-            // Get the point on the surface where the ray hit
-            Vector3 hitPoint = hitInfo.point;
+            //the position of the object
+            Vector3 targetPosition = boxPoint.transform.position;
 
-            // Calculate the rotation needed to look at the hit point
-            Vector3 lookDirection = hitPoint - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+            //lerp object to targeted position
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * travelSpeed);
 
-            // Apply the rotation to the object
-            transform.rotation = rotation;
+            // Cast a ray from the camera to the mouse position
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                // Get the point on the surface where the ray hit
+                Vector3 hitPoint = hitInfo.point;
+
+                // Calculate the rotation needed to look at the hit point
+                Vector3 lookDirection = hitPoint - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+
+                // Apply the rotation to the object
+                transform.rotation = rotation;
+            }
         }
     }
 }

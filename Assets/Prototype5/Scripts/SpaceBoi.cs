@@ -40,58 +40,61 @@ public class SpaceBoi : GameBehaviour
 
     void Update()
     {
-        //Check if player is grounded
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
+        if(_GSM.gameState == GameState.Playing)
         {
-            velocity.y = -2f;
-        }
+            //Check if player is grounded
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
 
-        Vector3 move = new Vector3(x, 0f, z);
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        controller.Move(move * speed * Time.deltaTime);
+            Vector3 move = new Vector3(x, 0f, z);
 
-        //turn the character on the direction its moving
-        if (move.magnitude > 0)
-        {
-            transform.rotation = Quaternion.LookRotation(move);
-        }
+            controller.Move(move * speed * Time.deltaTime);
 
-        //Play the running animation while moving
-        if (move.magnitude > 0 && isGrounded)
-        {
-            anim.SetTrigger("Run");
-        }
-        else
-        {
-            anim.SetTrigger("Idle");
-        }
+            //turn the character on the direction its moving
+            if (move.magnitude > 0)
+            {
+                transform.rotation = Quaternion.LookRotation(move);
+            }
 
-        //Jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+            //Play the running animation while moving
+            if (move.magnitude > 0 && isGrounded)
+            {
+                anim.SetTrigger("Run");
+            }
+            else
+            {
+                anim.SetTrigger("Idle");
+            }
 
-        //Gravity
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+            //Jump
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
 
-        //Play the jumping animation while in the air
-        if(!isGrounded)
-        {
-            anim.SetTrigger("Jump");
-            anim.ResetTrigger("Idle");
-        }
+            //Gravity
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
 
-        if(currentHealth <= 0 && !isDying)
-        {
-            OnDeath();
-            isDying = true;
+            //Play the jumping animation while in the air
+            if (!isGrounded)
+            {
+                anim.SetTrigger("Jump");
+                anim.ResetTrigger("Idle");
+            }
+
+            if (currentHealth <= 0 && !isDying)
+            {
+                OnDeath();
+                isDying = true;
+            }
         }
     }
 

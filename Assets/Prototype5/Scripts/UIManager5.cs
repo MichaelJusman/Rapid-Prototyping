@@ -63,4 +63,9 @@ public class UIManager5 : GameBehaviour<UIManager5>
     {
         healthText.text = _health.ToString();
     }
+
+    public void UpdateEnemyCount(int _enemy)
+    {
+        enemyCountText.text = "Enemy Left: " + _enemy.ToString();
+    }
 }
