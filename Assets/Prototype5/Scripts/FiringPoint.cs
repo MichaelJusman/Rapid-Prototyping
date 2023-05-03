@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiringPoint : GameBehaviour
+public class FiringPoint : GameBehaviour<FiringPoint>
 {
     [Header("Weapon Type")]
     public GameObject[] weaponType;

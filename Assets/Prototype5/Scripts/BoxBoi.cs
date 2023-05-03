@@ -13,8 +13,6 @@ public class BoxBoi : GameBehaviour
     public Camera cam;
     public float cameraSpeed = 2;
 
-    public Rigidbody rb;
-
     // Start is called before the first frame update
     void Start()
     {

@@ -34,6 +34,7 @@ public class GameBehaviour : MJ.Behaviour
     //Prototype 5
     protected static GameManager5 _GM5 { get { return GameManager5.Instance; } }
     protected static UIManager5 _UI5 { get { return UIManager5.Instance; } }
+    protected static FiringPoint _FP { get { return FiringPoint.Instance; } }
 
 
 
