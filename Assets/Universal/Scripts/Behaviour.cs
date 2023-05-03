@@ -48,6 +48,32 @@ namespace MJ
             return UnityEngine.Random.Range(_min, _max);
         }
 
+        public T RandomEnum<T>()
+        {
+            var values = Enum.GetValues(typeof(T));
+            return (T)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        }
+        /// <summary>
+        /// Gets a random int within the count of a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_list">The list to use as max value</param>
+        /// <returns>A random int</returns>
+        public int RandomInt<T>(List<T> _list)
+        {
+            return UnityEngine.Random.Range(0, _list.Count);
+        }
+        /// <summary>
+        /// Gets a random int
+        /// </summary>
+        /// <param name="_min">min value</param>
+        /// <param name="_max">max value</param>
+        /// <returns>A random int</returns>
+        public int RandomInt(int _min, int _max)
+        {
+            return UnityEngine.Random.Range(_min, _max);
+        }
+
         #region Coroutine Helpers
 
         /// <summary>

@@ -38,35 +38,35 @@ public class FoodSpawner : GameBehaviour<FoodSpawner>
 
         //if(spawnCounter == 5 && level1)
         //{
-        //    projectileSpeed += increaseSpeed;
+        //    orbSpeed += increaseSpeed;
         //    level1 = false;
         //    level2 = true;
         //}
 
         //if (spawnCounter == 10 && level2)
         //{
-        //    projectileSpeed += increaseSpeed;
+        //    orbSpeed += increaseSpeed;
         //    level2 = false;
         //    level3 = true;
         //}
 
         //if (spawnCounter == 15 && level3)
         //{
-        //    projectileSpeed += increaseSpeed;
+        //    orbSpeed += increaseSpeed;
         //    level3 = false;
         //    level4 = true;
         //}
 
         //if (spawnCounter == 20 && level4)
         //{
-        //    projectileSpeed += increaseSpeed;
+        //    orbSpeed += increaseSpeed;
         //    level4 = false;
         //    level5 = true;
         //}
 
         //if (spawnCounter == 25 && level5)
         //{
-        //    projectileSpeed += increaseSpeed;
+        //    orbSpeed += increaseSpeed;
         //    level5 = false;
         //}
 

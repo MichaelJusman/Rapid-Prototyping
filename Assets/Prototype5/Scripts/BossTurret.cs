@@ -1,22 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
+public enum WeaponType { Orb, Lazer, AOE, Homing}
 public class BossTurret : GameBehaviour
 {
+    
     [Header("Aim & Detection")]
     public Transform target;
+    public GameObject targetPlayer;
     public Transform firingPoint;
     public GameObject turretHead;
     public bool isEngaged;
 
-    [Header("Projectiles")]
-    public GameObject orbBullet;
-    public float projectileSpeed = 1000f;
-
-    [Header("Firing")]
+    [Header("Attack Variations")]
+    public int randomAttacks;
     public float fireRate = 1f;
     public float fireCounter;
+    WeaponType weaponType;
+
+    [Header("Orb")]
+    public GameObject orbBullet;
+    public float orbSpeed = 1000f;
+
+    [Header("Lazer")]
+    public GameObject lazerPillar;
+    public float lazerSpeed = 3000f;
+
+    [Header("AOE")]
+    public GameObject aoeAttack;
+    public GameObject aoeIndicator;
+
+    [Header("Homing")]
+    public GameObject homingMissile;
+    public float homingSpeed = 5;
+
 
 
     // Start is called before the first frame update
@@ -33,9 +52,10 @@ public class BossTurret : GameBehaviour
         {
             turretHead.transform.LookAt(target);
 
+
             if (fireCounter <= 0)
             {
-                FireOrb();
+                RandomWeaponChange();
                 fireCounter = 1f / fireRate;
             }
 
@@ -62,12 +82,62 @@ public class BossTurret : GameBehaviour
         }
     }
 
+    void ChangeWeapon()
+    {
+        switch (weaponType)
+        {
+            case WeaponType.Orb:
+                FireOrb();
+                break;
+
+            case WeaponType.Lazer:
+                LazerPillar();
+                break;
+
+            case WeaponType.AOE:
+                AOEAttact();
+                break;
+            case WeaponType.Homing:
+                break;
+        }
+            
+    }
+
+    void RandomWeaponChange()
+    {
+        weaponType = RandomEnum<WeaponType>();
+        ChangeWeapon();
+    }
+
     void FireOrb()
     {
         GameObject projectileInstance = Instantiate(orbBullet, firingPoint.position, firingPoint.rotation);
 
-        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * orbSpeed);
 
         Destroy(projectileInstance, 2);
+    }
+
+    void LazerPillar()
+    {
+        GameObject lazerInstance = Instantiate(lazerPillar, firingPoint.position, firingPoint.rotation);
+        lazerInstance.GetComponent<Rigidbody>().MovePosition(firingPoint.forward * lazerSpeed);
+        Destroy(lazerInstance, 2);
+
+    }
+
+    void AOEAttact()
+    {
+
+    }
+
+    void HomingAttack()
+    {
+        GameObject HomingInstance = Instantiate(lazerPillar, firingPoint.position, firingPoint.rotation);
+        Vector3 targetPosition = target.position;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * homingSpeed);
+        Destroy(HomingInstance, 2);
+
+
     }
 }
