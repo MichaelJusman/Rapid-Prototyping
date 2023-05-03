@@ -10,9 +10,8 @@ public class FiringPoint : GameBehaviour
 
     [Header("Cannon")]
     public float cannonSpeed = 300;
-    public float cannonRate = 1f;
-    public float cannonCounter;
     public float cannonAmmo = 10;
+    public float cannonLife = 1f;
 
     [Header("Bullet")]
     public float bulletSpeed = 1000;
@@ -61,7 +60,7 @@ public class FiringPoint : GameBehaviour
 
         projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * cannonSpeed);
 
-        Destroy(projectileInstance, 2);
+        Destroy(projectileInstance, cannonLife);
     }
 
     void FireSecondary()

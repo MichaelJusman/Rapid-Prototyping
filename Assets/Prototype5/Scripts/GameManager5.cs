@@ -10,22 +10,27 @@ public class GameManager5 : GameBehaviour<GameManager5>
     public bool isPlaying;
     public bool isPaused;
 
+    //public GameObject warpPortal;
+
 
     void Start()
     {
         _GSM.ChangeGameState(GameState.Instruction);
         _UI5.UpdateEnemyCount(enemyCount);
+        //warpPortal.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        enemyCount = FindObjectsOfType<EnemyTurret>().Length;
+        _UI5.UpdateEnemyCount(enemyCount);
+
+
         if (_GSM.gameState == GameState.Playing)
         {
             isPlaying = true;
             isPaused = false;
-            enemyCount = FindObjectsOfType<EnemyTurret>().Length;
-            _UI5.UpdateEnemyCount(enemyCount);
         }
 
 
@@ -49,6 +54,11 @@ public class GameManager5 : GameBehaviour<GameManager5>
         {
             Time.timeScale = 0;
         }
+
+        //if(enemyCount <= 0)
+        //{
+        //    warpPortal.SetActive(true);
+        //}
 
     }
 
