@@ -125,6 +125,14 @@ public class SpaceBoi : GameBehaviour
         {
             OnOutOfBounds();
         }
+
+        if (other.CompareTag("Damager"))
+        {
+            TakeDamage(10);
+            _UI5.UpdateHealthBar(currentHealth);
+            _UI5.UpdateHealthText(currentHealth);
+            Destroy(other.gameObject);
+        }
     }
 
     public void OnOutOfBounds()

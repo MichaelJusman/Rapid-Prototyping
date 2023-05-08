@@ -11,6 +11,7 @@ public class BossTurret : GameBehaviour
     public Transform target;
     public GameObject targetPlayer;
     public Transform firingPoint;
+    public Transform stillPoint;
     public GameObject turretHead;
     public bool isEngaged;
 
@@ -35,6 +36,7 @@ public class BossTurret : GameBehaviour
     [Header("Homing")]
     public GameObject homingMissile;
     public float homingSpeed = 5;
+    public GameObject HomingInstance;
 
 
 
@@ -60,7 +62,11 @@ public class BossTurret : GameBehaviour
             }
 
             fireCounter -= Time.deltaTime;
+
+
         }
+        
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -98,6 +104,7 @@ public class BossTurret : GameBehaviour
                 AOEAttact();
                 break;
             case WeaponType.Homing:
+                HomingAttack();
                 break;
         }
             
@@ -128,16 +135,14 @@ public class BossTurret : GameBehaviour
 
     void AOEAttact()
     {
+        GameObject AOEInstance = Instantiate(aoeAttack, stillPoint.position, stillPoint.rotation);
+        Destroy(AOEInstance, 5);
 
     }
 
     void HomingAttack()
     {
-        GameObject HomingInstance = Instantiate(lazerPillar, firingPoint.position, firingPoint.rotation);
-        Vector3 targetPosition = target.position;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * homingSpeed);
+        GameObject HomingInstance = Instantiate(homingMissile, firingPoint.position, firingPoint.rotation);
         Destroy(HomingInstance, 2);
-
-
     }
 }
