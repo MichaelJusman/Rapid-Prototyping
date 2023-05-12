@@ -88,6 +88,9 @@ public class BossTurret : GameBehaviour
         }
     }
 
+    /// <summary>
+    /// Changing the wapon being used
+    /// </summary>
     void ChangeWeapon()
     {
         switch (weaponType)
@@ -110,12 +113,18 @@ public class BossTurret : GameBehaviour
             
     }
 
+    /// <summary>
+    /// Randomizing attack
+    /// </summary>
     void RandomWeaponChange()
     {
         weaponType = RandomEnum<WeaponType>();
         ChangeWeapon();
     }
 
+    /// <summary>
+    /// Orb attack
+    /// </summary>
     void FireOrb()
     {
         GameObject projectileInstance = Instantiate(orbBullet, firingPoint.position, firingPoint.rotation);
@@ -125,6 +134,9 @@ public class BossTurret : GameBehaviour
         Destroy(projectileInstance, 2);
     }
 
+    /// <summary>
+    /// A lazer like attack
+    /// </summary>
     void LazerPillar()
     {
         GameObject lazerInstance = Instantiate(lazerPillar, firingPoint.position, firingPoint.rotation);
@@ -133,6 +145,9 @@ public class BossTurret : GameBehaviour
 
     }
 
+    /// <summary>
+    /// An AOE attack surrounding the boss
+    /// </summary>
     void AOEAttact()
     {
         GameObject AOEInstance = Instantiate(aoeAttack, stillPoint.position, stillPoint.rotation);
@@ -140,6 +155,9 @@ public class BossTurret : GameBehaviour
 
     }
 
+    /// <summary>
+    /// An attack that follows the player
+    /// </summary>
     void HomingAttack()
     {
         GameObject HomingInstance = Instantiate(homingMissile, firingPoint.position, firingPoint.rotation);

@@ -54,6 +54,10 @@ public class FiringPoint : GameBehaviour<FiringPoint>
         }
     }
 
+
+    /// <summary>
+    /// Firing a slow moving orb
+    /// </summary>
     void FireWeapon()
     {
         GameObject projectileInstance = Instantiate(weaponType[0], firingPoint.position, firingPoint.rotation);
@@ -63,6 +67,9 @@ public class FiringPoint : GameBehaviour<FiringPoint>
         Destroy(projectileInstance, cannonLife);
     }
 
+    /// <summary>
+    /// Firing a SMG like bullet
+    /// </summary>
     void FireSecondary()
     {
         GameObject projectileInstance = Instantiate(weaponType[1], firingPoint.position, firingPoint.rotation);
